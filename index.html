@@ -269,21 +269,152 @@
         function renderCategories() {
             return `
             <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-                <h1 class="text-4xl font-black text-slate-900 mb-2">产品分类</h1>
-                <p class="text-slate-500 font-bold mb-10">基于 10 年真实场景数据，为不同工况研发专属品类。</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    ${MOCK_CATEGORIES.map(cat => `
-                        <div class="border-l-4 border-red-800 bg-white p-8 shadow-sm hover:shadow-lg transition cursor-pointer flex items-start gap-6 group" onclick="navigate('all')">
-                            <div class="bg-red-50 p-4 rounded-lg group-hover:bg-red-100 transition">
-                                <i data-lucide="${cat.icon}" class="w-8 h-8 text-red-700"></i>
+                <div class="mb-12">
+                    <h1 class="text-4xl font-black text-slate-900 mb-4">产品分类与全能定制系统</h1>
+                    <p class="text-slate-500 font-bold text-lg max-w-3xl">福立得不仅是生产商，更是您的“专属皮革工程部”。基于 10 年真实场景数据，我们为您提供四大核心工况的【全维度定制】，从一张生皮的厚度，到一根防火线的走向，全部由您定义，满足您的 OEM/ODM 贴牌需求。</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- 1. 高强度电焊防护 -->
+                    <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                        <div class="p-8 md:flex gap-8 items-start">
+                            <div class="bg-red-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
+                                <i data-lucide="flame" class="w-16 h-16 text-red-700 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">高强度电焊防护</h3>
+                                <span class="mt-2 bg-red-800 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">EN407 4级热防护</span>
                             </div>
-                            <div>
-                                <h3 class="text-2xl font-black text-slate-800 mb-2">${cat.name}</h3>
-                                <p class="text-slate-500">${cat.desc}</p>
-                                <span class="text-red-800 font-bold text-sm mt-4 inline-block group-hover:underline">查看该系列 &rarr;</span>
+                            <div class="md:w-3/4 mt-6 md:mt-0">
+                                <p class="text-slate-600 font-bold mb-6 text-lg">专为造船、重钢结构等极限飞溅环境设计。抗熔融金属滴落，切断辐射热传导。</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">皮料厚度定制</div>
+                                        <div class="text-sm font-bold text-slate-800">1.2mm - 1.5mm 特级牛二层皮 / 肩皮</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">内胆与隔热层定制</div>
+                                        <div class="text-sm font-bold text-slate-800">纯棉吸汗帆布 / 复合阻燃抓绒 / 航空级隔热棉</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">缝制与结构定制</div>
+                                        <div class="text-sm font-bold text-slate-800">全系 100% 杜邦凯夫拉 (Kevlar®) 防火线，虎口皮条补强</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">外观与版型定制</div>
+                                        <div class="text-sm font-bold text-slate-800">14/16/18 英寸护袖加长，专属品牌防伪钢印、织标定制</div>
+                                    </div>
+                                </div>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
+                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
                             </div>
                         </div>
-                    `).join('')}
+                    </div>
+
+                    <!-- 2. 重工业耐磨搬运 -->
+                    <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                        <div class="p-8 md:flex gap-8 items-start">
+                            <div class="bg-orange-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
+                                <i data-lucide="package" class="w-16 h-16 text-orange-600 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">重工业耐磨搬运</h3>
+                                <span class="mt-2 bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">掌心双层加固技术</span>
+                            </div>
+                            <div class="md:w-3/4 mt-6 md:mt-0">
+                                <p class="text-slate-600 font-bold mb-6 text-lg">应对矿山开采、五金冲压、建筑装卸等高摩擦、高切割风险环境，提供极致物理防御。</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">皮材混搭定制</div>
+                                        <div class="text-sm font-bold text-slate-800">A级头层牛皮(耐油污) / 优质猪皮(高透气) / 拼接重型帆布</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防御升级定制</div>
+                                        <div class="text-sm font-bold text-slate-800">掌心/食指双层牛皮贴片，可内置玻纤防割内衬 (ANSI Cut A4+)</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">抗冲击防砸定制</div>
+                                        <div class="text-sm font-bold text-slate-800">手背可复合 TPR 橡胶防撞模块，全方位保护指骨与掌骨</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">袖口与穿脱定制</div>
+                                        <div class="text-sm font-bold text-slate-800">安全硬袖口 (Safety Cuff) / 罗纹针织松紧袖口 / 快速脱卸设计</div>
+                                    </div>
+                                </div>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
+                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 极端环境特种手套 -->
+                    <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                        <div class="p-8 md:flex gap-8 items-start">
+                            <div class="bg-blue-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
+                                <i data-lucide="shield-check" class="w-16 h-16 text-blue-700 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">极端环境特种手套</h3>
+                                <span class="mt-2 bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">防化、超高温、极寒保暖</span>
+                            </div>
+                            <div class="md:w-3/4 mt-6 md:mt-0">
+                                <p class="text-slate-600 font-bold mb-6 text-lg">跨界材料复合工艺。打破纯皮革的物理极限，为炼钢炉前、冷库液氮、石化平台量身定制。</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">反辐射热复合定制</div>
+                                        <div class="text-sm font-bold text-slate-800">手背复合耐 1000℃ 铝箔防火隔热层，掌心配高密度耐高温皮</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">极寒保暖系统定制</div>
+                                        <div class="text-sm font-bold text-slate-800">零下30度环境：内部填充 3M Thinsulate™ 保暖棉或高克重仿兔毛</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防油浸渍处理</div>
+                                        <div class="text-sm font-bold text-slate-800">皮料深度防水、防油污化学涂层浸渍工艺处理</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">多重防护技术叠加</div>
+                                        <div class="text-sm font-bold text-slate-800">可将防割、防砸、防寒、耐油四种性能集中开发于一双皮手套</div>
+                                    </div>
+                                </div>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
+                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. 轻量级精密操作 -->
+                    <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                        <div class="p-8 md:flex gap-8 items-start">
+                            <div class="bg-slate-100 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
+                                <i data-lucide="list-ordered" class="w-16 h-16 text-slate-700 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">轻量级精密操作</h3>
+                                <span class="mt-2 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">高灵敏度防油作业</span>
+                            </div>
+                            <div class="md:w-3/4 mt-6 md:mt-0">
+                                <p class="text-slate-600 font-bold mb-6 text-lg">被称为“第二层皮肤”。专为 TIG 氩弧焊精密填丝、汽车零配件精细装配、仪器调校而生。</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">顶级薄皮选材定制</div>
+                                        <div class="text-sm font-bold text-slate-800">0.6mm - 0.8mm A级纯头层山羊皮 / 鹿皮 / 柔软猪头层</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">无缝人体工学定制</div>
+                                        <div class="text-sm font-bold text-slate-800">食指无接缝设计 (Seamless Index Finger)，大幅提升握持精准度</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">无内里 / 半隔热定制</div>
+                                        <div class="text-sm font-bold text-slate-800">掌心无内里保留极致触感，手背增加薄层羊毛隔绝轻微热辐射</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">腕部锁定系统定制</div>
+                                        <div class="text-sm font-bold text-slate-800">魔术贴粘扣 (Velcro) / 弹力橡筋收口系统，防止细杂物落入</div>
+                                    </div>
+                                </div>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
+                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             `;
