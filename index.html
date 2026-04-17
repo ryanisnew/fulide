@@ -1,374 +1,448 @@
-import React, { useState } from 'react';
-import { 
-    Menu, X, User, LogIn, QrCode, Smartphone, 
-    ChevronRight, Package, ListOrdered, Flame, 
-    ShieldCheck, Grid, Clock, CheckCircle, Truck 
-} from 'lucide-react';
-
-// --- 模拟数据 (Mock Data) ---
-const MOCK_PRODUCTS = [
-    { id: 1, name: "16英寸加长特厚电焊手套", category: "电焊防护", isHot: true, price: "B2B询价", desc: "1.3mm特级牛肩皮，全凯夫拉线，适合高强度防飞溅。", img: "6268.jpg" },
-    { id: 2, name: "掌心加固双层耐磨手套", category: "重型搬运", isHot: true, price: "B2B询价", desc: "拇指及掌心双层牛皮加固，矿场/钢厂搬运首选。", img: "6264.jpg" },
-    { id: 3, name: "美式全牛二层无缝短款", category: "通用劳保", isHot: true, price: "B2B询价", desc: "Wing Thumb 人体工学设计，抓握更灵活。", img: "6266.jpg" },
-    { id: 4, name: "铝箔隔热抗辐射电焊手套", category: "极端高温", isHot: false, price: "定制产品", desc: "手背复合铝箔，掌心特级牛皮，针对炼钢炉前作业。", img: "6265.jpg" },
-    { id: 5, name: "复合绒里极寒保暖皮手套", category: "极端环境", isHot: false, price: "B2B询价", desc: "加厚内胆，防风耐磨，适合俄罗斯/高纬度地区户外施工。", img: "6267.jpg" },
-    { id: 6, name: "精细操作头层牛皮手套", category: "精密装配", isHot: false, price: "B2B询价", desc: "A级头层皮，触感真实，防油污，适合汽车零配件装配。", img: "6268.jpg" }
-];
-
-const MOCK_CATEGORIES = [
-    { name: "高强度电焊防护", icon: <Flame className="w-8 h-8 text-red-700" />, desc: "EN407 4级热防护，抗熔融飞溅" },
-    { name: "重工业耐磨搬运", icon: <Package className="w-8 h-8 text-red-700" />, desc: "特级厚牛皮，掌心双层加固技术" },
-    { name: "极端环境特种手套", icon: <ShieldCheck className="w-8 h-8 text-red-700" />, desc: "防化、超高温、极寒保暖等特种定制" },
-    { name: "轻量级精密操作", icon: <ListOrdered className="w-8 h-8 text-red-700" />, desc: "头层皮/羊皮，高灵敏度防油作业" }
-];
-
-const MOCK_ORDERS = [
-    { id: "FLD-260417-001", product: "16英寸加长特厚电焊手套", quantity: "5,000 双", date: "2026-04-10", status: "生产中", statusColor: "text-blue-600", icon: <Clock className="w-5 h-5" /> },
-    { id: "FLD-260322-089", product: "掌心加固双层耐磨手套", quantity: "12,000 双", date: "2026-03-22", status: "已发货 (海上)", statusColor: "text-orange-500", icon: <Truck className="w-5 h-5" /> },
-    { id: "FLD-260115-024", product: "定制Logo款牛皮手套", quantity: "2,000 双", date: "2026-01-15", status: "已交付", statusColor: "text-green-600", icon: <CheckCircle className="w-5 h-5" /> }
-];
-
-export default function App() {
-    const [currentView, setCurrentView] = useState('home');
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    
-    // Auth State
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [showLoginModal, setShowLoginModal] = useState(false);
-    const [loginMethod, setLoginMethod] = useState('wechat'); // 'wechat' or 'account'
-
-    // Navigation Handler
-    const navigate = (view) => {
-        if (view === 'orders' && !isLoggedIn) {
-            setShowLoginModal(true);
-            setIsMenuOpen(false);
-            return;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福立得 B2B | 专属订货系统</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
-        setCurrentView(view);
-        setIsMenuOpen(false);
-        window.scrollTo(0, 0);
-    };
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 selection:bg-red-800 selection:text-white">
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        setIsLoggedIn(true);
-        setShowLoginModal(false);
-        navigate('orders');
-    };
+    <!-- 挂载点 -->
+    <div id="root"></div>
 
-    // --- Components ---
-    
-    const Navbar = () => (
-        <nav className="fixed w-full z-50 bg-white border-b-4 border-red-800 shadow-md">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-20 items-center">
-                    {/* Logo & Brand */}
-                    <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('home')}>
-                        <img src="6269.jpg" alt="福立得Logo" className="h-12 w-12 object-cover rounded border border-red-800" />
-                        <div className="flex flex-col">
-                            <span className="text-2xl font-black tracking-tighter text-slate-900 leading-none">福立得</span>
-                            <span className="text-[0.65rem] font-bold tracking-widest text-red-800 uppercase">FLIDER B2B</span>
+    <script>
+        // ==========================================
+        // 1. 模拟数据 (Mock Data)
+        // ==========================================
+        const MOCK_PRODUCTS = [
+            { id: 1, name: "16英寸加长特厚电焊手套", category: "电焊防护", isHot: true, price: "B2B询价", desc: "1.3mm特级牛肩皮，全凯夫拉线，适合高强度防飞溅。", img: "6268.jpg" },
+            { id: 2, name: "掌心加固双层耐磨手套", category: "重型搬运", isHot: true, price: "B2B询价", desc: "拇指及掌心双层牛皮加固，矿场/钢厂搬运首选。", img: "6264.jpg" },
+            { id: 3, name: "美式全牛二层无缝短款", category: "通用劳保", isHot: true, price: "B2B询价", desc: "Wing Thumb 人体工学设计，抓握更灵活。", img: "6266.jpg" },
+            { id: 4, name: "铝箔隔热抗辐射电焊手套", category: "极端高温", isHot: false, price: "定制产品", desc: "手背复合铝箔，掌心特级牛皮，针对炼钢炉前作业。", img: "6265.jpg" },
+            { id: 5, name: "复合绒里极寒保暖皮手套", category: "极端环境", isHot: false, price: "B2B询价", desc: "加厚内胆，防风耐磨，适合俄罗斯/高纬度地区户外施工。", img: "6267.jpg" },
+            { id: 6, name: "精细操作头层牛皮手套", category: "精密装配", isHot: false, price: "B2B询价", desc: "A级头层皮，触感真实，防油污，适合汽车零配件装配。", img: "6268.jpg" }
+        ];
+
+        const MOCK_CATEGORIES = [
+            { name: "高强度电焊防护", icon: "flame", desc: "EN407 4级热防护，抗熔融飞溅" },
+            { name: "重工业耐磨搬运", icon: "package", desc: "特级厚牛皮，掌心双层加固技术" },
+            { name: "极端环境特种手套", icon: "shield-check", desc: "防化、超高温、极寒保暖等特种定制" },
+            { name: "轻量级精密操作", icon: "list-ordered", desc: "头层皮/羊皮，高灵敏度防油作业" }
+        ];
+
+        const MOCK_ORDERS = [
+            { id: "FLD-260417-001", product: "16英寸加长特厚电焊手套", quantity: "5,000 双", date: "2026-04-10", status: "生产中", statusColor: "text-blue-600", icon: "clock" },
+            { id: "FLD-260322-089", product: "掌心加固双层耐磨手套", quantity: "12,000 双", date: "2026-03-22", status: "已发货 (海上)", statusColor: "text-orange-500", icon: "truck" },
+            { id: "FLD-260115-024", product: "定制Logo款牛皮手套", quantity: "2,000 双", date: "2026-01-15", status: "已交付", statusColor: "text-green-600", icon: "check-circle" }
+        ];
+
+        // ==========================================
+        // 2. 全局状态管理 (State)
+        // ==========================================
+        let state = {
+            currentView: 'home',
+            isMenuOpen: false,
+            isLoggedIn: false,
+            showLoginModal: false,
+            loginMethod: 'wechat'
+        };
+
+        // ==========================================
+        // 3. 业务逻辑函数 (Actions)
+        // ==========================================
+        function navigate(view) {
+            if (view === 'orders' && !state.isLoggedIn) {
+                state.showLoginModal = true;
+                state.isMenuOpen = false;
+                render();
+                return;
+            }
+            state.currentView = view;
+            state.isMenuOpen = false;
+            window.scrollTo(0, 0);
+            render();
+        }
+
+        function toggleMenu() {
+            state.isMenuOpen = !state.isMenuOpen;
+            render();
+        }
+
+        function toggleLoginModal(show) {
+            state.showLoginModal = show;
+            render();
+        }
+
+        function setLoginMethod(method) {
+            state.loginMethod = method;
+            render();
+        }
+
+        function handleLogin(e) {
+            if (e) e.preventDefault();
+            state.isLoggedIn = true;
+            state.showLoginModal = false;
+            navigate('orders'); // 登录成功直接跳到订单记录
+        }
+
+        // 处理图片加载失败
+        function imgError(img) {
+            img.onerror = null;
+            img.src = 'https://via.placeholder.com/600x400?text=FLIDER+GLOVES';
+        }
+
+        // ==========================================
+        // 4. 视图渲染函数 (Views)
+        // ==========================================
+        
+        function renderNavbar() {
+            return `
+            <nav class="fixed w-full z-50 bg-white border-b-4 border-red-800 shadow-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-20 items-center">
+                        <!-- Logo & Brand -->
+                        <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
+                            <img src="6269.jpg" onerror="imgError(this)" alt="福立得Logo" class="h-12 w-12 object-cover rounded border border-red-800" />
+                            <div class="flex flex-col">
+                                <span class="text-2xl font-black tracking-tighter text-slate-900 leading-none">福立得</span>
+                                <span class="text-[0.65rem] font-bold tracking-widest text-red-800 uppercase">FLIDER B2B</span>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Menu -->
+                        <div class="hidden lg:flex items-center space-x-8 font-black text-sm tracking-widest text-slate-700">
+                            <button onclick="navigate('home')" class="hover:text-red-800 ${state.currentView === 'home' ? 'text-red-800 border-b-2 border-red-800' : ''}">首页</button>
+                            <button onclick="navigate('categories')" class="hover:text-red-800 ${state.currentView === 'categories' ? 'text-red-800 border-b-2 border-red-800' : ''}">产品分类</button>
+                            <button onclick="navigate('hot')" class="hover:text-red-800 ${state.currentView === 'hot' ? 'text-red-800 border-b-2 border-red-800' : ''}">热销商品</button>
+                            <button onclick="navigate('all')" class="hover:text-red-800 ${state.currentView === 'all' ? 'text-red-800 border-b-2 border-red-800' : ''}">全部商品</button>
+                            <button onclick="navigate('orders')" class="hover:text-red-800 ${state.currentView === 'orders' ? 'text-red-800 border-b-2 border-red-800' : ''}">订单记录</button>
+                        </div>
+
+                        <!-- Desktop Auth -->
+                        <div class="hidden lg:flex items-center">
+                            ${state.isLoggedIn ? `
+                                <div class="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-full cursor-pointer hover:bg-slate-200 transition" onclick="navigate('orders')">
+                                    <i data-lucide="user" class="w-5 h-5 text-red-800"></i>
+                                    <span>采购商 8099</span>
+                                </div>
+                            ` : `
+                                <button onclick="toggleLoginModal(true)" class="flex items-center gap-2 bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition">
+                                    <i data-lucide="log-in" class="w-4 h-4"></i> B2B 登录
+                                </button>
+                            `}
+                        </div>
+
+                        <!-- Mobile Menu Button -->
+                        <div class="lg:hidden flex items-center">
+                            <button onclick="toggleMenu()" class="text-slate-800">
+                                <i data-lucide="${state.isMenuOpen ? 'x' : 'menu'}" class="w-8 h-8"></i>
+                            </button>
                         </div>
                     </div>
-
-                    {/* Desktop Menu */}
-                    <div className="hidden lg:flex items-center space-x-8 font-black text-sm tracking-widest text-slate-700">
-                        <button onClick={() => navigate('home')} className={`hover:text-red-800 ${currentView === 'home' && 'text-red-800 border-b-2 border-red-800'}`}>首页</button>
-                        <button onClick={() => navigate('categories')} className={`hover:text-red-800 ${currentView === 'categories' && 'text-red-800 border-b-2 border-red-800'}`}>产品分类</button>
-                        <button onClick={() => navigate('hot')} className={`hover:text-red-800 ${currentView === 'hot' && 'text-red-800 border-b-2 border-red-800'}`}>热销商品</button>
-                        <button onClick={() => navigate('all')} className={`hover:text-red-800 ${currentView === 'all' && 'text-red-800 border-b-2 border-red-800'}`}>全部商品</button>
-                        <button onClick={() => navigate('orders')} className={`hover:text-red-800 ${currentView === 'orders' && 'text-red-800 border-b-2 border-red-800'}`}>订单记录</button>
-                    </div>
-
-                    {/* Desktop Auth */}
-                    <div className="hidden lg:flex items-center">
-                        {isLoggedIn ? (
-                            <div className="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-full cursor-pointer hover:bg-slate-200 transition" onClick={() => navigate('orders')}>
-                                <User className="w-5 h-5 text-red-800" />
-                                <span>采购商 8099</span>
-                            </div>
-                        ) : (
-                            <button onClick={() => setShowLoginModal(true)} className="flex items-center gap-2 bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition">
-                                <LogIn className="w-4 h-4" /> B2B 登录
-                            </button>
-                        )}
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <div className="lg:hidden flex items-center">
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-800">
-                            {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-                        </button>
-                    </div>
                 </div>
-            </div>
 
-            {/* Mobile Menu Dropdown */}
-            {isMenuOpen && (
-                <div className="lg:hidden bg-white border-t border-slate-200 shadow-xl absolute w-full">
-                    <div className="flex flex-col p-4 space-y-4 font-bold text-slate-700">
-                        <button onClick={() => navigate('home')} className="text-left py-2">首页</button>
-                        <button onClick={() => navigate('categories')} className="text-left py-2">产品分类</button>
-                        <button onClick={() => navigate('hot')} className="text-left py-2">热销商品</button>
-                        <button onClick={() => navigate('all')} className="text-left py-2">全部商品</button>
-                        <button onClick={() => navigate('orders')} className="text-left py-2 text-red-800">订单记录</button>
-                        <hr />
-                        {isLoggedIn ? (
-                             <div className="flex items-center gap-2 text-red-800 py-2">
-                                <User className="w-5 h-5" /> 采购商 8099
-                             </div>
-                        ) : (
-                            <button onClick={() => setShowLoginModal(true)} className="flex items-center justify-center gap-2 bg-red-800 text-white w-full py-3 rounded">
-                                <LogIn className="w-4 h-4" /> 登录 / 注册
-                            </button>
-                        )}
+                <!-- Mobile Menu Dropdown -->
+                ${state.isMenuOpen ? `
+                    <div class="lg:hidden bg-white border-t border-slate-200 shadow-xl absolute w-full z-40">
+                        <div class="flex flex-col p-4 space-y-4 font-bold text-slate-700">
+                            <button onclick="navigate('home')" class="text-left py-2">首页</button>
+                            <button onclick="navigate('categories')" class="text-left py-2">产品分类</button>
+                            <button onclick="navigate('hot')" class="text-left py-2">热销商品</button>
+                            <button onclick="navigate('all')" class="text-left py-2">全部商品</button>
+                            <button onclick="navigate('orders')" class="text-left py-2 text-red-800">订单记录</button>
+                            <hr />
+                            ${state.isLoggedIn ? `
+                                <div class="flex items-center gap-2 text-red-800 py-2" onclick="navigate('orders')">
+                                    <i data-lucide="user" class="w-5 h-5"></i> 采购商 8099
+                                </div>
+                            ` : `
+                                <button onclick="toggleLoginModal(true)" class="flex items-center justify-center gap-2 bg-red-800 text-white w-full py-3 rounded">
+                                    <i data-lucide="log-in" class="w-4 h-4"></i> 登录 / 注册
+                                </button>
+                            `}
+                        </div>
                     </div>
-                </div>
-            )}
-        </nav>
-    );
+                ` : ''}
+            </nav>
+            `;
+        }
 
-    const LoginModal = () => {
-        if (!showLoginModal) return null;
-        return (
-            <div className="fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center backdrop-blur-sm p-4">
-                <div className="bg-white max-w-md w-full rounded-xl shadow-2xl overflow-hidden relative">
-                    <button onClick={() => setShowLoginModal(false)} className="absolute right-4 top-4 text-slate-400 hover:text-slate-800">
-                        <X className="w-6 h-6" />
+        function renderLoginModal() {
+            if (!state.showLoginModal) return '';
+            return `
+            <div class="fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center backdrop-blur-sm p-4">
+                <div class="bg-white max-w-md w-full rounded-xl shadow-2xl overflow-hidden relative">
+                    <button onclick="toggleLoginModal(false)" class="absolute right-4 top-4 text-slate-400 hover:text-slate-800">
+                        <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                     
-                    <div className="p-8">
-                        <div className="text-center mb-8">
-                            <h2 className="text-3xl font-black text-slate-900">欢迎回来</h2>
-                            <p className="text-slate-500 mt-2 font-bold">福立得 B2B 客户专属订货系统</p>
+                    <div class="p-8">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl font-black text-slate-900">欢迎回来</h2>
+                            <p class="text-slate-500 mt-2 font-bold">福立得 B2B 客户专属订货系统</p>
                         </div>
 
-                        {/* Login Method Tabs */}
-                        <div className="flex mb-6 border-b-2 border-slate-100">
-                            <button 
-                                className={`flex-1 py-3 font-bold text-sm flex items-center justify-center gap-2 ${loginMethod === 'wechat' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-400'}`}
-                                onClick={() => setLoginMethod('wechat')}
-                            >
-                                <QrCode className="w-4 h-4" /> 微信免密登录
+                        <!-- Login Method Tabs -->
+                        <div class="flex mb-6 border-b-2 border-slate-100">
+                            <button class="flex-1 py-3 font-bold text-sm flex items-center justify-center gap-2 ${state.loginMethod === 'wechat' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-400'}" onclick="setLoginMethod('wechat')">
+                                <i data-lucide="qr-code" class="w-4 h-4"></i> 微信免密登录
                             </button>
-                            <button 
-                                className={`flex-1 py-3 font-bold text-sm flex items-center justify-center gap-2 ${loginMethod === 'account' ? 'text-red-800 border-b-2 border-red-800' : 'text-slate-400'}`}
-                                onClick={() => setLoginMethod('account')}
-                            >
-                                <Smartphone className="w-4 h-4" /> 账号密码登录
+                            <button class="flex-1 py-3 font-bold text-sm flex items-center justify-center gap-2 ${state.loginMethod === 'account' ? 'text-red-800 border-b-2 border-red-800' : 'text-slate-400'}" onclick="setLoginMethod('account')">
+                                <i data-lucide="smartphone" class="w-4 h-4"></i> 账号密码登录
                             </button>
                         </div>
 
-                        {/* Login Forms */}
-                        {loginMethod === 'wechat' ? (
-                            <div className="flex flex-col items-center py-6">
-                                <div className="w-48 h-48 bg-slate-100 rounded-lg flex items-center justify-center mb-4 border border-slate-200">
-                                    <QrCode className="w-32 h-32 text-slate-800" />
+                        <!-- Login Forms -->
+                        ${state.loginMethod === 'wechat' ? `
+                            <div class="flex flex-col items-center py-6">
+                                <div class="w-48 h-48 bg-slate-100 rounded-lg flex items-center justify-center mb-4 border border-slate-200">
+                                    <i data-lucide="qr-code" class="w-32 h-32 text-slate-800"></i>
                                 </div>
-                                <p className="text-sm text-slate-500 mb-6 text-center">请使用微信扫一扫<br/>直接登录/注册福立得 B2B 系统</p>
-                                {/* Mock button to bypass for demo */}
-                                <button onClick={handleLogin} className="bg-green-600 text-white w-full py-3 rounded font-bold hover:bg-green-700 transition">
+                                <p class="text-sm text-slate-500 mb-6 text-center">请使用微信扫一扫<br/>直接登录/注册福立得 B2B 系统</p>
+                                <button onclick="handleLogin()" class="bg-green-600 text-white w-full py-3 rounded font-bold hover:bg-green-700 transition">
                                     (演示) 点击模拟扫码成功
                                 </button>
                             </div>
-                        ) : (
-                            <form onSubmit={handleLogin} className="space-y-4">
+                        ` : `
+                            <form onsubmit="handleLogin(event)" class="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-1">手机号/企业账号</label>
-                                    <input type="text" required className="w-full border border-slate-300 rounded px-4 py-3 focus:outline-none focus:border-red-800" placeholder="请输入..." />
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">手机号/企业账号</label>
+                                    <input type="text" required class="w-full border border-slate-300 rounded px-4 py-3 focus:outline-none focus:border-red-800" placeholder="请输入..." />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-1">密码</label>
-                                    <input type="password" required className="w-full border border-slate-300 rounded px-4 py-3 focus:outline-none focus:border-red-800" placeholder="••••••••" />
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">密码</label>
+                                    <input type="password" required class="w-full border border-slate-300 rounded px-4 py-3 focus:outline-none focus:border-red-800" placeholder="••••••••" />
                                 </div>
-                                <button type="submit" className="bg-red-800 text-white w-full py-3 mt-4 rounded font-bold hover:bg-red-900 transition">
+                                <button type="submit" class="bg-red-800 text-white w-full py-3 mt-4 rounded font-bold hover:bg-red-900 transition">
                                     登 录
                                 </button>
                             </form>
-                        )}
+                        `}
                     </div>
-                    <div className="bg-slate-50 p-4 text-center text-xs text-slate-500 border-t border-slate-100">
+                    <div class="bg-slate-50 p-4 text-center text-xs text-slate-500 border-t border-slate-100">
                         仅限福立得认证企业客户及代理商登录
                     </div>
                 </div>
             </div>
-        );
-    };
+            `;
+        }
 
-    // --- Page Views ---
-
-    const ViewHome = () => (
-        <div className="pt-20">
-            {/* Hero */}
-            <section className="bg-slate-900 text-white py-24 lg:py-32 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20">
-                    <img src="6267.jpg" alt="bg" className="w-full h-full object-cover" />
-                </div>
-                <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div className="bg-red-800 inline-block px-3 py-1 font-bold text-xs mb-6 transform -skew-x-12">10年深耕 · 极致防护</div>
-                        <h1 className="text-5xl lg:text-7xl font-black leading-tight mb-6">重定义<br/><span className="text-red-500 underline decoration-8 underline-offset-8">皮革防御</span></h1>
-                        <p className="text-slate-300 text-lg mb-8 max-w-md">福立得专注牛二层皮电焊防护，为全球重工业提供超越标准的专业级手部保护方案。支持深度全定制。</p>
-                        <button onClick={() => navigate('all')} className="bg-red-700 text-white px-8 py-4 font-black hover:bg-red-600 transition flex items-center gap-2">
-                            浏览全部商品 <ChevronRight className="w-5 h-5" />
-                        </button>
+        function renderHome() {
+            return `
+            <div class="pt-20">
+                <section class="bg-slate-900 text-white py-24 lg:py-32 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-20">
+                        <img src="6267.jpg" onerror="imgError(this)" alt="bg" class="w-full h-full object-cover" />
                     </div>
-                    <div className="hidden md:block">
-                        <img src="6264.jpg" alt="材料" className="rounded border-8 border-slate-800 shadow-2xl transform rotate-3" />
-                    </div>
-                </div>
-            </section>
-        </div>
-    );
-
-    const ViewCategories = () => (
-        <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-            <h1 className="text-4xl font-black text-slate-900 mb-2">产品分类</h1>
-            <p className="text-slate-500 font-bold mb-10">基于 10 年真实场景数据，为不同工况研发专属品类。</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {MOCK_CATEGORIES.map((cat, idx) => (
-                    <div key={idx} className="border-l-4 border-red-800 bg-white p-8 shadow-sm hover:shadow-lg transition cursor-pointer flex items-start gap-6 group" onClick={() => navigate('all')}>
-                        <div className="bg-red-50 p-4 rounded-lg group-hover:bg-red-100 transition">
-                            {cat.icon}
-                        </div>
+                    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h3 className="text-2xl font-black text-slate-800 mb-2">{cat.name}</h3>
-                            <p className="text-slate-500">{cat.desc}</p>
-                            <span className="text-red-800 font-bold text-sm mt-4 inline-block group-hover:underline">查看该系列 &rarr;</span>
+                            <div class="bg-red-800 inline-block px-3 py-1 font-bold text-xs mb-6 transform -skew-x-12">10年深耕 · 极致防护</div>
+                            <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-6">重定义<br/><span class="text-red-500 underline decoration-8 underline-offset-8">皮革防御</span></h1>
+                            <p class="text-slate-300 text-lg mb-8 max-w-md">福立得专注牛二层皮电焊防护，为全球重工业提供超越标准的专业级手部保护方案。支持深度全定制。</p>
+                            <button onclick="navigate('all')" class="bg-red-700 text-white px-8 py-4 font-black hover:bg-red-600 transition flex items-center gap-2 w-fit">
+                                浏览全部商品 <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <div class="hidden md:block">
+                            <img src="6264.jpg" onerror="imgError(this)" alt="材料" class="rounded border-8 border-slate-800 shadow-2xl transform rotate-3" />
                         </div>
                     </div>
-                ))}
+                </section>
             </div>
-        </div>
-    );
+            `;
+        }
 
-    const ProductGrid = ({ title, subtitle, products }) => (
-        <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-            <div className="flex justify-between items-end mb-10">
-                <div>
-                    <h1 className="text-4xl font-black text-slate-900 mb-2">{title}</h1>
-                    <p className="text-slate-500 font-bold">{subtitle}</p>
-                </div>
-                {title !== '全部商品' && (
-                    <button onClick={() => navigate('all')} className="hidden sm:block text-red-800 font-bold hover:underline">查看全部</button>
-                )}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {products.map(p => (
-                    <div key={p.id} className="bg-white border border-slate-200 overflow-hidden group hover:shadow-2xl transition duration-300">
-                        <div className="relative h-64 overflow-hidden bg-slate-100">
-                            {p.isHot && <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-black px-3 py-1 z-10 shadow-md">HOT 热销</div>}
-                            <img src={p.img} alt={p.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" />
-                        </div>
-                        <div className="p-6">
-                            <span className="text-xs font-bold text-red-800 tracking-widest">{p.category}</span>
-                            <h3 className="text-xl font-black text-slate-900 mt-1 mb-3 leading-tight">{p.name}</h3>
-                            <p className="text-slate-500 text-sm mb-6 line-clamp-2 h-10">{p.desc}</p>
-                            <div className="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <span className="font-black text-lg text-slate-800">{p.price}</span>
-                                <button onClick={() => setShowLoginModal(true)} className="bg-slate-900 text-white px-4 py-2 text-sm font-bold hover:bg-red-800 transition">获取大货价</button>
+        function renderCategories() {
+            return `
+            <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+                <h1 class="text-4xl font-black text-slate-900 mb-2">产品分类</h1>
+                <p class="text-slate-500 font-bold mb-10">基于 10 年真实场景数据，为不同工况研发专属品类。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    ${MOCK_CATEGORIES.map(cat => `
+                        <div class="border-l-4 border-red-800 bg-white p-8 shadow-sm hover:shadow-lg transition cursor-pointer flex items-start gap-6 group" onclick="navigate('all')">
+                            <div class="bg-red-50 p-4 rounded-lg group-hover:bg-red-100 transition">
+                                <i data-lucide="${cat.icon}" class="w-8 h-8 text-red-700"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black text-slate-800 mb-2">${cat.name}</h3>
+                                <p class="text-slate-500">${cat.desc}</p>
+                                <span class="text-red-800 font-bold text-sm mt-4 inline-block group-hover:underline">查看该系列 &rarr;</span>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-
-    const ViewOrders = () => (
-        <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-            <div className="flex justify-between items-end mb-10 border-b-2 border-slate-200 pb-6">
-                <div>
-                    <h1 className="text-4xl font-black text-slate-900 mb-2">订单记录与追溯</h1>
-                    <p className="text-slate-500 font-bold">透明化管理，随时掌握大货生产及物流进度。</p>
+                    `).join('')}
                 </div>
-                <button className="bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition flex items-center gap-2">
-                    <ListOrdered className="w-5 h-5" /> 快速返单
-                </button>
             </div>
+            `;
+        }
 
-            <div className="bg-white shadow rounded-lg overflow-hidden border border-slate-200">
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm font-bold uppercase tracking-wider">
-                                <th className="p-4">订单编号 / 日期</th>
-                                <th className="p-4">定制商品</th>
-                                <th className="p-4">数量</th>
-                                <th className="p-4">当前状态</th>
-                                <th className="p-4">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                            {MOCK_ORDERS.map((order, idx) => (
-                                <tr key={idx} className="hover:bg-slate-50 transition">
-                                    <td className="p-4">
-                                        <div className="font-black text-slate-800">{order.id}</div>
-                                        <div className="text-xs text-slate-400 mt-1">{order.date}</div>
-                                    </td>
-                                    <td className="p-4 font-bold text-slate-700">{order.product}</td>
-                                    <td className="p-4 font-black text-slate-800">{order.quantity}</td>
-                                    <td className="p-4">
-                                        <span className={`flex items-center gap-2 text-sm font-bold ${order.statusColor}`}>
-                                            {order.icon} {order.status}
-                                        </span>
-                                    </td>
-                                    <td className="p-4">
-                                        <button className="text-slate-500 hover:text-red-800 font-bold text-sm border border-slate-300 px-3 py-1 rounded hover:border-red-800 transition">
-                                            查看明细
-                                        </button>
-                                    </td>
+        function renderProductGrid(title, subtitle, filterHot) {
+            let products = filterHot ? MOCK_PRODUCTS.filter(p => p.isHot) : MOCK_PRODUCTS;
+            return `
+            <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+                <div class="flex justify-between items-end mb-10">
+                    <div>
+                        <h1 class="text-4xl font-black text-slate-900 mb-2">${title}</h1>
+                        <p class="text-slate-500 font-bold">${subtitle}</p>
+                    </div>
+                    ${title !== '全部商品' ? `<button onclick="navigate('all')" class="hidden sm:block text-red-800 font-bold hover:underline">查看全部</button>` : ''}
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    ${products.map(p => `
+                        <div class="bg-white border border-slate-200 overflow-hidden group hover:shadow-2xl transition duration-300 flex flex-col">
+                            <div class="relative h-64 overflow-hidden bg-slate-100">
+                                ${p.isHot ? `<div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-black px-3 py-1 z-10 shadow-md">HOT 热销</div>` : ''}
+                                <img src="${p.img}" onerror="imgError(this)" alt="${p.name}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" />
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col">
+                                <span class="text-xs font-bold text-red-800 tracking-widest">${p.category}</span>
+                                <h3 class="text-xl font-black text-slate-900 mt-1 mb-3 leading-tight">${p.name}</h3>
+                                <p class="text-slate-500 text-sm mb-6 line-clamp-2">${p.desc}</p>
+                                <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+                                    <span class="font-black text-lg text-slate-800">${p.price}</span>
+                                    <button onclick="toggleLoginModal(true)" class="bg-slate-900 text-white px-4 py-2 text-sm font-bold hover:bg-red-800 transition">获取大货价</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            `;
+        }
+
+        function renderOrders() {
+            return `
+            <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+                <div class="flex justify-between items-end mb-10 border-b-2 border-slate-200 pb-6">
+                    <div>
+                        <h1 class="text-4xl font-black text-slate-900 mb-2">订单记录与追溯</h1>
+                        <p class="text-slate-500 font-bold">透明化管理，随时掌握大货生产及物流进度。</p>
+                    </div>
+                    <button class="bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition flex items-center gap-2">
+                        <i data-lucide="list-ordered" class="w-5 h-5"></i> 快速返单
+                    </button>
+                </div>
+
+                <div class="bg-white shadow rounded-lg overflow-hidden border border-slate-200">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm font-bold uppercase tracking-wider">
+                                    <th class="p-4">订单编号 / 日期</th>
+                                    <th class="p-4">定制商品</th>
+                                    <th class="p-4">数量</th>
+                                    <th class="p-4">当前状态</th>
+                                    <th class="p-4 text-center">操作</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                {/* Dashboard Stats */}
-                <div className="bg-slate-50 p-6 border-t border-slate-200 grid grid-cols-3 gap-4 text-center">
-                    <div>
-                        <div className="text-3xl font-black text-slate-800">3</div>
-                        <div className="text-xs font-bold text-slate-500">历史总订单数</div>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                ${MOCK_ORDERS.map(order => `
+                                    <tr class="hover:bg-slate-50 transition">
+                                        <td class="p-4">
+                                            <div class="font-black text-slate-800">${order.id}</div>
+                                            <div class="text-xs text-slate-400 mt-1">${order.date}</div>
+                                        </td>
+                                        <td class="p-4 font-bold text-slate-700">${order.product}</td>
+                                        <td class="p-4 font-black text-slate-800">${order.quantity}</td>
+                                        <td class="p-4">
+                                            <span class="flex items-center gap-2 text-sm font-bold ${order.statusColor}">
+                                                <i data-lucide="${order.icon}" class="w-5 h-5"></i> ${order.status}
+                                            </span>
+                                        </td>
+                                        <td class="p-4 text-center">
+                                            <button class="text-slate-500 hover:text-red-800 font-bold text-sm border border-slate-300 px-3 py-1 rounded hover:border-red-800 transition">
+                                                查看明细
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="border-l border-r border-slate-200">
-                        <div className="text-3xl font-black text-red-700">19,000</div>
-                        <div className="text-xs font-bold text-slate-500">累计提货双数</div>
-                    </div>
-                    <div>
-                        <div className="text-3xl font-black text-slate-800">1</div>
-                        <div className="text-xs font-bold text-slate-500">生产中订单</div>
+                    <!-- Dashboard Stats -->
+                    <div class="bg-slate-50 p-6 border-t border-slate-200 grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-3xl font-black text-slate-800">3</div>
+                            <div class="text-xs font-bold text-slate-500 mt-1">历史总订单数</div>
+                        </div>
+                        <div class="border-l border-r border-slate-200">
+                            <div class="text-3xl font-black text-red-700">19,000</div>
+                            <div class="text-xs font-bold text-slate-500 mt-1">累计提货双数</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-slate-800">1</div>
+                            <div class="text-xs font-bold text-slate-500 mt-1">生产中订单</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+            `;
+        }
 
-    // --- Main Render ---
-    return (
-        <div className="min-h-screen bg-slate-50 font-sans selection:bg-red-800 selection:text-white">
-            <Navbar />
-            
-            {/* View Switcher */}
-            {currentView === 'home' && <ViewHome />}
-            {currentView === 'categories' && <ViewCategories />}
-            {currentView === 'hot' && <ProductGrid title="热销商品" subtitle="经市场验证的爆款，出海拿单利器。" products={MOCK_PRODUCTS.filter(p => p.isHot)} />}
-            {currentView === 'all' && <ProductGrid title="全部商品" subtitle="支持参数修改与深度定制贴牌。" products={MOCK_PRODUCTS} />}
-            {currentView === 'orders' && <ViewOrders />}
-
-            <LoginModal />
-
-            {/* Footer */}
-            <footer className="bg-black py-10 border-t border-red-900 text-center">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-slate-500 text-xs tracking-widest font-bold uppercase mb-2">
+        function renderFooter() {
+            return `
+            <footer class="bg-black py-10 border-t border-red-900 text-center">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-slate-500 text-xs tracking-widest font-bold uppercase mb-2">
                         © 2026 福立得 FLIDER SAFETY. B2B 专属定制平台.
                     </div>
-                    <div className="text-slate-700 text-xs">
+                    <div class="text-slate-700 text-xs">
                         专注于高性能牛二层皮电焊手套，全品类支持 OEM/ODM
                     </div>
                 </div>
             </footer>
-        </div>
-    );
-}
+            `;
+        }
+
+        // ==========================================
+        // 5. 主渲染引擎 (App Runner)
+        // ==========================================
+        function render() {
+            const root = document.getElementById('root');
+            let content = '';
+
+            // Routing
+            if (state.currentView === 'home') {
+                content = renderHome();
+            } else if (state.currentView === 'categories') {
+                content = renderCategories();
+            } else if (state.currentView === 'hot') {
+                content = renderProductGrid("热销商品", "经市场验证的爆款，出海拿单利器。", true);
+            } else if (state.currentView === 'all') {
+                content = renderProductGrid("全部商品", "支持参数修改与深度定制贴牌。", false);
+            } else if (state.currentView === 'orders') {
+                content = renderOrders();
+            }
+
+            // Build DOM
+            root.innerHTML = `
+                ${renderNavbar()}
+                ${content}
+                ${renderLoginModal()}
+                ${renderFooter()}
+            `;
+
+            // Initialize Lucide Icons after DOM update
+            lucide.createIcons();
+        }
+
+        // 初始化启动应用
+        render();
+
+    </script>
+</body>
+</html>
