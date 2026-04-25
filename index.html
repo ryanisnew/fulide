@@ -26,15 +26,28 @@
 
     <script>
         // ==========================================
-        // 1. 模拟数据 (Mock Data)
+        // 1. 模拟数据 (Mock Data) - 已全面替换为真实高清工业图
         // ==========================================
         const MOCK_PRODUCTS = [
-            { id: 1, name: "16英寸加长特厚电焊手套", category: "电焊防护", isHot: true, price: "B2B询价", desc: "1.3mm特级牛肩皮，全凯夫拉线，适合高强度防飞溅。", img: "6268.jpg" },
-            { id: 2, name: "掌心加固双层耐磨手套", category: "重型搬运", isHot: true, price: "B2B询价", desc: "拇指及掌心双层牛皮加固，矿场/钢厂搬运首选。", img: "6264.jpg" },
-            { id: 3, name: "美式全牛二层无缝短款", category: "通用劳保", isHot: true, price: "B2B询价", desc: "Wing Thumb 人体工学设计，抓握更灵活。", img: "6266.jpg" },
-            { id: 4, name: "铝箔隔热抗辐射电焊手套", category: "极端高温", isHot: false, price: "定制产品", desc: "手背复合铝箔，掌心特级牛皮，针对炼钢炉前作业。", img: "6265.jpg" },
-            { id: 5, name: "复合绒里极寒保暖皮手套", category: "极端环境", isHot: false, price: "B2B询价", desc: "加厚内胆，防风耐磨，适合俄罗斯/高纬度地区户外施工。", img: "6267.jpg" },
-            { id: 6, name: "精细操作头层牛皮手套", category: "精密装配", isHot: false, price: "B2B询价", desc: "A级头层皮，触感真实，防油污，适合汽车零配件装配。", img: "6268.jpg" }
+            // 1. 高强度电焊防护
+            { id: 1, name: "16英寸加长特厚电焊手套", category: "高强度电焊防护", isHot: true, price: "B2B询价", desc: "1.3mm特级牛肩皮，全凯夫拉线，适合高强度防飞溅。", img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" },
+            { id: 7, name: "全内里隔热牛二层短焊手套", category: "高强度电焊防护", isHot: false, price: "B2B询价", desc: "复合阻燃抓绒内胆，虎口皮条补强，轻量化焊接首选。", img: "https://images.unsplash.com/photo-1590674852885-ec397750335e?auto=format&fit=crop&q=80&w=800" },
+            { id: 8, name: "18英寸极端飞溅护臂焊工手套", category: "高强度电焊防护", isHot: true, price: "定制产品", desc: "超长护臂设计，专为重钢结构及造船仰焊开发。", img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800" },
+
+            // 2. 重工业耐磨搬运
+            { id: 2, name: "掌心加固双层耐磨手套", category: "重工业耐磨搬运", isHot: true, price: "B2B询价", desc: "拇指及掌心双层牛皮加固，矿场/钢厂搬运首选。", img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" },
+            { id: 9, name: "TPR防砸减震耐磨手套", category: "重工业耐磨搬运", isHot: true, price: "B2B询价", desc: "手背复合TPR橡胶防撞模块，掌心玻纤防割内衬。", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=800" },
+            { id: 10, name: "美式全牛皮无缝短款劳保手套", category: "重工业耐磨搬运", isHot: false, price: "B2B询价", desc: "Wing Thumb 人体工学设计，安全硬袖口，抓握更灵活。", img: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=800" },
+
+            // 3. 极端环境特种手套
+            { id: 4, name: "铝箔隔热抗辐射电焊手套", category: "极端环境特种手套", isHot: true, price: "定制产品", desc: "手背复合铝箔，掌心特级耐高温皮，针对1000℃炼钢炉前作业。", img: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=800" },
+            { id: 5, name: "复合绒里极寒保暖皮手套", category: "极端环境特种手套", isHot: false, price: "B2B询价", desc: "加厚3M Thinsulate™内胆，防风耐磨，适合极寒户外施工。", img: "https://images.unsplash.com/photo-1616422285623-aa30eb0ecb32?auto=format&fit=crop&q=80&w=800" },
+            { id: 11, name: "重油污防化浸渍牛皮手套", category: "极端环境特种手套", isHot: false, price: "B2B询价", desc: "皮料深度防水防油涂层浸渍，专为石化平台及海上钻井定制。", img: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=800" },
+
+            // 4. 轻量级精密操作
+            { id: 6, name: "精细操作A级头层牛皮手套", category: "轻量级精密操作", isHot: false, price: "B2B询价", desc: "A级头层皮，触感真实，无内里设计，适合汽车零配件精细装配。", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800" },
+            { id: 12, name: "TIG氩弧焊山羊皮无缝手套", category: "轻量级精密操作", isHot: true, price: "B2B询价", desc: "顶级出口0.6mm山羊皮，食指无接缝，极致控丝触感。", img: "https://images.unsplash.com/photo-1611116238612-421712a233b4?auto=format&fit=crop&q=80&w=800" },
+            { id: 13, name: "弹力收口精密仪器调校手套", category: "轻量级精密操作", isHot: false, price: "B2B询价", desc: "鹿皮材质，腕部魔术贴锁定系统，防微尘落入。", img: "https://images.unsplash.com/photo-1584483756303-346d5c3175c0?auto=format&fit=crop&q=80&w=800" }
         ];
 
         const MOCK_CATEGORIES = [
@@ -96,10 +109,9 @@
             if (e) e.preventDefault();
             state.isLoggedIn = true;
             state.showLoginModal = false;
-            navigate('orders'); // 登录成功直接跳到订单记录
+            navigate('orders');
         }
 
-        // 处理图片加载失败
         function imgError(img) {
             img.onerror = null;
             img.src = 'https://via.placeholder.com/600x400?text=FLIDER+GLOVES';
@@ -114,16 +126,14 @@
             <nav class="fixed w-full z-50 bg-white border-b-4 border-red-800 shadow-md">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-20 items-center">
-                        <!-- Logo & Brand -->
                         <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
-                            <img src="6269.jpg" onerror="imgError(this)" alt="福立得Logo" class="h-12 w-12 object-cover rounded border border-red-800" />
+                            <img src="WhatsApp Image 2026-04-16 at 16.10.54.jpeg" onerror="imgError(this)" alt="福立得Logo" class="h-12 w-12 object-cover rounded border border-red-800 p-0.5" />
                             <div class="flex flex-col">
                                 <span class="text-2xl font-black tracking-tighter text-slate-900 leading-none">福立得</span>
                                 <span class="text-[0.65rem] font-bold tracking-widest text-red-800 uppercase">FLIDER B2B</span>
                             </div>
                         </div>
 
-                        <!-- Desktop Menu -->
                         <div class="hidden lg:flex items-center space-x-8 font-black text-sm tracking-widest text-slate-700">
                             <button onclick="navigate('home')" class="hover:text-red-800 ${state.currentView === 'home' ? 'text-red-800 border-b-2 border-red-800' : ''}">首页</button>
                             <button onclick="navigate('categories')" class="hover:text-red-800 ${state.currentView === 'categories' ? 'text-red-800 border-b-2 border-red-800' : ''}">产品分类</button>
@@ -132,7 +142,6 @@
                             <button onclick="navigate('orders')" class="hover:text-red-800 ${state.currentView === 'orders' ? 'text-red-800 border-b-2 border-red-800' : ''}">订单记录</button>
                         </div>
 
-                        <!-- Desktop Auth -->
                         <div class="hidden lg:flex items-center">
                             ${state.isLoggedIn ? `
                                 <div class="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-full cursor-pointer hover:bg-slate-200 transition" onclick="navigate('orders')">
@@ -146,7 +155,6 @@
                             `}
                         </div>
 
-                        <!-- Mobile Menu Button -->
                         <div class="lg:hidden flex items-center">
                             <button onclick="toggleMenu()" class="text-slate-800">
                                 <i data-lucide="${state.isMenuOpen ? 'x' : 'menu'}" class="w-8 h-8"></i>
@@ -155,7 +163,6 @@
                     </div>
                 </div>
 
-                <!-- Mobile Menu Dropdown -->
                 ${state.isMenuOpen ? `
                     <div class="lg:hidden bg-white border-t border-slate-200 shadow-xl absolute w-full z-40">
                         <div class="flex flex-col p-4 space-y-4 font-bold text-slate-700">
@@ -196,7 +203,6 @@
                             <p class="text-slate-500 mt-2 font-bold">福立得 B2B 客户专属订货系统</p>
                         </div>
 
-                        <!-- Login Method Tabs -->
                         <div class="flex mb-6 border-b-2 border-slate-100">
                             <button class="flex-1 py-3 font-bold text-sm flex items-center justify-center gap-2 ${state.loginMethod === 'wechat' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-400'}" onclick="setLoginMethod('wechat')">
                                 <i data-lucide="qr-code" class="w-4 h-4"></i> 微信免密登录
@@ -206,7 +212,6 @@
                             </button>
                         </div>
 
-                        <!-- Login Forms -->
                         ${state.loginMethod === 'wechat' ? `
                             <div class="flex flex-col items-center py-6">
                                 <div class="w-48 h-48 bg-slate-100 rounded-lg flex items-center justify-center mb-4 border border-slate-200">
@@ -245,8 +250,8 @@
             return `
             <div class="pt-20">
                 <section class="bg-slate-900 text-white py-24 lg:py-32 relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-20">
-                        <img src="6267.jpg" onerror="imgError(this)" alt="bg" class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 opacity-30">
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1920" onerror="imgError(this)" alt="bg" class="w-full h-full object-cover" />
                     </div>
                     <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                         <div>
@@ -258,7 +263,7 @@
                             </button>
                         </div>
                         <div class="hidden md:block">
-                            <img src="6264.jpg" onerror="imgError(this)" alt="材料" class="rounded border-8 border-slate-800 shadow-2xl transform rotate-3" />
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" onerror="imgError(this)" alt="材料" class="rounded border-8 border-slate-800 shadow-2xl transform rotate-3" />
                         </div>
                     </div>
                 </section>
@@ -420,8 +425,53 @@
             `;
         }
 
+        function renderProductCard(p) {
+            return `
+                <div class="bg-white border border-slate-200 overflow-hidden group hover:shadow-2xl transition duration-300 flex flex-col rounded-xl">
+                    <div class="relative h-64 overflow-hidden bg-slate-100">
+                        ${p.isHot ? '<div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-black px-3 py-1 z-10 shadow-md rounded-full tracking-widest">HOT 热销</div>' : ''}
+                        <img src="${p.img}" onerror="imgError(this)" alt="${p.name}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500 hover:scale-105" />
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <span class="text-xs font-bold text-red-800 tracking-widest uppercase mb-2">${p.category}</span>
+                        <h3 class="text-xl font-black text-slate-900 mb-3 leading-tight">${p.name}</h3>
+                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">${p.desc}</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+                            <span class="font-black text-lg text-slate-800">${p.price}</span>
+                            <button onclick="toggleLoginModal(true)" class="bg-slate-900 text-white px-5 py-2 text-sm font-bold rounded hover:bg-red-800 transition shadow-md">获取大货价</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderProductGrid(title, subtitle, filterHot) {
-            let products = filterHot ? MOCK_PRODUCTS.filter(p => p.isHot) : MOCK_PRODUCTS;
+            let contentHtml = '';
+
+            if (filterHot) {
+                let products = MOCK_PRODUCTS.filter(p => p.isHot);
+                contentHtml = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        ${products.map(p => renderProductCard(p)).join('')}
+                    </div>
+                `;
+            } else {
+                contentHtml = MOCK_CATEGORIES.map(cat => {
+                    let catProducts = MOCK_PRODUCTS.filter(p => p.category === cat.name);
+                    if (catProducts.length === 0) return '';
+                    return `
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-black text-slate-800 border-l-4 border-red-800 pl-4 mb-6 flex items-center gap-2">
+                                <i data-lucide="${cat.icon}" class="w-6 h-6 text-red-700"></i> ${cat.name}
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                ${catProducts.map(p => renderProductCard(p)).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
             return `
             <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
                 <div class="flex justify-between items-end mb-10">
@@ -431,26 +481,7 @@
                     </div>
                     ${title !== '全部商品' ? `<button onclick="navigate('all')" class="hidden sm:block text-red-800 font-bold hover:underline">查看全部</button>` : ''}
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    ${products.map(p => `
-                        <div class="bg-white border border-slate-200 overflow-hidden group hover:shadow-2xl transition duration-300 flex flex-col">
-                            <div class="relative h-64 overflow-hidden bg-slate-100">
-                                ${p.isHot ? `<div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-black px-3 py-1 z-10 shadow-md">HOT 热销</div>` : ''}
-                                <img src="${p.img}" onerror="imgError(this)" alt="${p.name}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" />
-                            </div>
-                            <div class="p-6 flex-1 flex flex-col">
-                                <span class="text-xs font-bold text-red-800 tracking-widest">${p.category}</span>
-                                <h3 class="text-xl font-black text-slate-900 mt-1 mb-3 leading-tight">${p.name}</h3>
-                                <p class="text-slate-500 text-sm mb-6 line-clamp-2">${p.desc}</p>
-                                <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
-                                    <span class="font-black text-lg text-slate-800">${p.price}</span>
-                                    <button onclick="toggleLoginModal(true)" class="bg-slate-900 text-white px-4 py-2 text-sm font-bold hover:bg-red-800 transition">获取大货价</button>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
+                ${contentHtml}
             </div>
             `;
         }
@@ -526,14 +557,86 @@
 
         function renderFooter() {
             return `
-            <footer class="bg-black py-10 border-t border-red-900 text-center">
-                <div class="max-w-7xl mx-auto px-6">
-                    <div class="text-slate-500 text-xs tracking-widest font-bold uppercase mb-2">
-                        © 2026 福立得 FLIDER SAFETY. B2B 专属定制平台.
+            <!-- 客户询价表单模块 (Message & Email Box) -->
+            <section class="bg-white py-16 border-t border-slate-200">
+                <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-black text-slate-900 mb-4 flex items-center gap-3">
+                            <i data-lucide="mail" class="w-8 h-8 text-red-800"></i> 发送定制需求
+                        </h2>
+                        <p class="text-slate-500 font-bold mb-8 text-lg">我们的工程团队将直接接收您的询价，并于 24 小时内将方案发送至您的邮箱。</p>
+                        <form onsubmit="alert('询盘消息已发送至福立得后台！我们的工程师将尽快通过邮箱联系您！'); return false;" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">您的姓名 / 称呼</label>
+                                    <input type="text" required class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="怎么称呼您？" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">电子邮箱 (Email Box)</label>
+                                    <input type="email" required class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="用于接收方案和报价" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">具体需求 (Message Box)</label>
+                                <textarea required rows="4" class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="例如：我们需要采购 2000 双高强度电焊手套，要求加厚牛二层皮并印制我们的 Logo..."></textarea>
+                            </div>
+                            <button type="submit" class="bg-red-800 text-white px-8 py-4 rounded-lg font-black tracking-widest hover:bg-red-900 transition shadow-lg w-full md:w-auto flex items-center justify-center gap-2">
+                                发送询盘消息 Send Message <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                        </form>
                     </div>
-                    <div class="text-slate-700 text-xs">
-                        专注于高性能牛二层皮电焊手套，全品类支持 OEM/ODM
+                    <div class="hidden lg:block relative">
+                        <div class="absolute inset-0 bg-red-800 rounded-2xl transform rotate-3 scale-105 opacity-10"></div>
+                        <img src="https://images.unsplash.com/photo-1590674852885-ec397750335e?auto=format&fit=crop&q=80&w=800" class="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-500 border-8 border-white" alt="福立得定制服务" />
                     </div>
+                </div>
+            </section>
+
+            <footer class="bg-slate-900 py-16 border-t-[8px] border-red-800 text-slate-300">
+                <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+                    
+                    <!-- 品牌信息区 -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <img src="WhatsApp Image 2026-04-16 at 16.10.54.jpeg" onerror="imgError(this)" alt="福立得Logo" class="h-10 w-10 object-cover rounded border border-red-800 p-0.5 bg-white" />
+                            <span class="text-2xl font-black tracking-tighter text-white">福立得 B2B</span>
+                        </div>
+                        <p class="text-sm text-slate-400 mb-6 leading-relaxed">专注于高性能牛二层皮电焊手套，全品类支持 OEM/ODM。为全球重工业提供超越标准的专业级手部保护方案，一站式出海及内销工厂直供服务。</p>
+                        <div class="text-xs font-bold uppercase tracking-widest text-slate-500">
+                            © 2026 FLIDER SAFETY.<br/>All Rights Reserved.
+                        </div>
+                    </div>
+
+                    <!-- 微信联系区 -->
+                    <div class="flex flex-col items-center md:items-start bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-white font-black uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-green-500"></i> 微信业务咨询
+                        </h4>
+                        <div class="bg-white p-2 rounded-lg inline-block mb-4 shadow-lg">
+                            <img src="9659.png" alt="WeChat QR Code" class="w-32 h-32 object-contain" />
+                        </div>
+                        <div class="text-center md:text-left">
+                            <p class="text-sm font-bold text-slate-300">添加微信号: <span class="text-green-400 select-all font-black text-lg tracking-wider block mt-1">worktogether8</span></p>
+                            <p class="text-xs text-slate-400 mt-2">对接人: Steven 小袁人</p>
+                            <p class="text-xs text-slate-500">(中国香港 离岛区)</p>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp 联系区 -->
+                    <div class="flex flex-col items-center md:items-start bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-white font-black uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i data-lucide="phone" class="w-5 h-5 text-green-400"></i> WhatsApp 国际业务
+                        </h4>
+                        <div class="bg-white p-2 rounded-lg inline-block mb-4 shadow-lg">
+                            <img src="shared_qr_code.png" alt="WhatsApp QR Code" class="w-32 h-32 object-contain" />
+                        </div>
+                        
+                        <a href="https://wa.me/message/JF3NK3JK3BGUG1" target="_blank" class="w-full text-center text-sm font-black text-white bg-green-600 hover:bg-green-500 shadow-lg shadow-green-900/50 transition-all px-4 py-3 rounded-lg flex items-center justify-center gap-2">
+                            通过 WhatsApp 发消息给Steven
+                        </a>
+                        <p class="text-xs text-slate-400 mt-3 text-center md:text-left w-full">Steven - WhatsApp 商业账户</p>
+                    </div>
+
                 </div>
             </footer>
             `;
