@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>福立得 B2B | 专属订货系统</title>
+    <title>福立得 | 皮革劳保全品类定制</title>
     <!-- 引入 Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入 Lucide Icons CDN -->
@@ -17,6 +17,27 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
+        /* 自定义精美横向滚动条 */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #991b1b; /* 福立得红 */
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #7f1d1d;
+        }
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #991b1b #f1f5f9;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 selection:bg-red-800 selection:text-white">
@@ -26,41 +47,44 @@
 
     <script>
         // ==========================================
-        // 1. 模拟数据 (Mock Data) - 已全面替换为真实高清工业图
+        // 1. 模拟数据 (Mock Data) - 全面覆盖五大系列
         // ==========================================
         const MOCK_PRODUCTS = [
-            // 1. 高强度电焊防护
-            { id: 1, name: "16英寸加长特厚电焊手套", category: "高强度电焊防护", isHot: true, price: "B2B询价", desc: "1.3mm特级牛肩皮，全凯夫拉线，适合高强度防飞溅。", img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" },
-            { id: 7, name: "全内里隔热牛二层短焊手套", category: "高强度电焊防护", isHot: false, price: "B2B询价", desc: "复合阻燃抓绒内胆，虎口皮条补强，轻量化焊接首选。", img: "https://images.unsplash.com/photo-1590674852885-ec397750335e?auto=format&fit=crop&q=80&w=800" },
-            { id: 8, name: "18英寸极端飞溅护臂焊工手套", category: "高强度电焊防护", isHot: true, price: "定制产品", desc: "超长护臂设计，专为重钢结构及造船仰焊开发。", img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800" },
+            // 1. 电焊系列
+            { id: 1, name: "16英寸加长特厚电焊手套", category: "电焊系列", isHot: true, price: "获取报价", desc: "1.3mm特级牛肩皮，全凯夫拉线，适合高强度防飞溅与重工业焊接。", img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" },
+            { id: 2, name: "TIG氩弧焊山羊皮无缝手套", category: "电焊系列", isHot: true, price: "获取报价", desc: "顶级0.6mm山羊皮，食指无缝剪裁，极致控丝触感与防烫保护。", img: "https://images.unsplash.com/photo-1611116238612-421712a233b4?auto=format&fit=crop&q=80&w=800" },
+            { id: 3, name: "全内里隔热牛二层短焊手套", category: "电焊系列", isHot: false, price: "获取报价", desc: "复合阻燃抓绒内胆，虎口皮条补强，轻量化电焊与切割首选。", img: "https://images.unsplash.com/photo-1590674852885-ec397750335e?auto=format&fit=crop&q=80&w=800" },
 
-            // 2. 重工业耐磨搬运
-            { id: 2, name: "掌心加固双层耐磨手套", category: "重工业耐磨搬运", isHot: true, price: "B2B询价", desc: "拇指及掌心双层牛皮加固，矿场/钢厂搬运首选。", img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" },
-            { id: 9, name: "TPR防砸减震耐磨手套", category: "重工业耐磨搬运", isHot: true, price: "B2B询价", desc: "手背复合TPR橡胶防撞模块，掌心玻纤防割内衬。", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=800" },
-            { id: 10, name: "美式全牛皮无缝短款劳保手套", category: "重工业耐磨搬运", isHot: false, price: "B2B询价", desc: "Wing Thumb 人体工学设计，安全硬袖口，抓握更灵活。", img: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=800" },
+            // 2. 半皮系列
+            { id: 4, name: "美式半皮帆布安全袖口手套", category: "半皮系列", isHot: true, price: "获取报价", desc: "牛二层皮掌+加厚条纹帆布手背，胶化硬袖口防砸，重工搬运必备。", img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" },
+            { id: 5, name: "掌心双层加固半皮搬运手套", category: "半皮系列", isHot: true, price: "获取报价", desc: "食指与掌心增加牛皮补强贴片，抗撕裂耐磨度提升300%。", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=800" },
+            { id: 6, name: "全掌半皮罗纹收口劳保手套", category: "半皮系列", isHot: false, price: "获取报价", desc: "高弹力针织罗纹袖口，防尘防杂物掉落，适合农林与建筑作业。", img: "https://images.unsplash.com/photo-1542152643-d9d300eb0193?auto=format&fit=crop&q=80&w=800" },
 
-            // 3. 极端环境特种手套
-            { id: 4, name: "铝箔隔热抗辐射电焊手套", category: "极端环境特种手套", isHot: true, price: "定制产品", desc: "手背复合铝箔，掌心特级耐高温皮，针对1000℃炼钢炉前作业。", img: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=800" },
-            { id: 5, name: "复合绒里极寒保暖皮手套", category: "极端环境特种手套", isHot: false, price: "B2B询价", desc: "加厚3M Thinsulate™内胆，防风耐磨，适合极寒户外施工。", img: "https://images.unsplash.com/photo-1616422285623-aa30eb0ecb32?auto=format&fit=crop&q=80&w=800" },
-            { id: 11, name: "重油污防化浸渍牛皮手套", category: "极端环境特种手套", isHot: false, price: "B2B询价", desc: "皮料深度防水防油涂层浸渍，专为石化平台及海上钻井定制。", img: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=800" },
+            // 3. 司机手套系列 (Driver Gloves)
+            { id: 7, name: "A级头层牛皮无缝司机手套", category: "司机手套系列", isHot: true, price: "获取报价", desc: "Keystone独立大拇指，头层牛皮触感极佳，防油污耐磨。", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800" },
+            { id: 8, name: "高透气猪头层物流驾驶手套", category: "司机手套系列", isHot: false, price: "获取报价", desc: "猪皮天然毛孔散热，手背松紧带收口，长途货运及叉车首选。", img: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=800" },
+            
+            // 4. 宠物系列
+            { id: 9, name: "60cm加长防咬抓宠物训练手套", category: "宠物系列", isHot: true, price: "获取报价", desc: "加厚牛皮直达小臂，内衬凯夫拉防割纤维，防大型猛犬抓咬。", img: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800" },
+            { id: 10, name: "猫咪洗护专用柔韧防抓手套", category: "宠物系列", isHot: false, price: "获取报价", desc: "鹿皮或羊皮复合高密度海绵层，兼顾操作灵活性与防刺破能力。", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800" },
 
-            // 4. 轻量级精密操作
-            { id: 6, name: "精细操作A级头层牛皮手套", category: "轻量级精密操作", isHot: false, price: "B2B询价", desc: "A级头层皮，触感真实，无内里设计，适合汽车零配件精细装配。", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=800" },
-            { id: 12, name: "TIG氩弧焊山羊皮无缝手套", category: "轻量级精密操作", isHot: true, price: "B2B询价", desc: "顶级出口0.6mm山羊皮，食指无接缝，极致控丝触感。", img: "https://images.unsplash.com/photo-1611116238612-421712a233b4?auto=format&fit=crop&q=80&w=800" },
-            { id: 13, name: "弹力收口精密仪器调校手套", category: "轻量级精密操作", isHot: false, price: "B2B询价", desc: "鹿皮材质，腕部魔术贴锁定系统，防微尘落入。", img: "https://images.unsplash.com/photo-1584483756303-346d5c3175c0?auto=format&fit=crop&q=80&w=800" }
+            // 5. 极端特种系列
+            { id: 11, name: "TPR防砸减震石油钻井手套", category: "极端特种系列", isHot: true, price: "获取报价", desc: "手背热塑性橡胶减震，掌心玻纤防割，应对极端重机械碰撞。", img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800" },
+            { id: 12, name: "零下30度极寒冷库保暖手套", category: "极端特种系列", isHot: false, price: "获取报价", desc: "内置3M Thinsulate™ 保暖棉，防水防油，极寒户外施工必备。", img: "https://images.unsplash.com/photo-1616422285623-aa30eb0ecb32?auto=format&fit=crop&q=80&w=800" }
         ];
 
         const MOCK_CATEGORIES = [
-            { name: "高强度电焊防护", icon: "flame", desc: "EN407 4级热防护，抗熔融飞溅" },
-            { name: "重工业耐磨搬运", icon: "package", desc: "特级厚牛皮，掌心双层加固技术" },
-            { name: "极端环境特种手套", icon: "shield-check", desc: "防化、超高温、极寒保暖等特种定制" },
-            { name: "轻量级精密操作", icon: "list-ordered", desc: "头层皮/羊皮，高灵敏度防油作业" }
+            { name: "电焊系列", icon: "flame", desc: "抗熔融飞溅与辐射热，涵盖电弧焊及高精密TIG氩弧焊" },
+            { name: "半皮系列", icon: "briefcase", desc: "帆布拼接牛皮，安全硬袖口防砸，高性价比搬运首选" },
+            { name: "司机手套系列", icon: "car", desc: "头层牛/猪皮，Keystone拇指设计，极佳触感与防油污" },
+            { name: "宠物系列", icon: "shield-plus", desc: "加厚加长直达手臂，防猫狗抓咬，宠物医疗训练防护" },
+            { name: "极端特种系列", icon: "zap", desc: "TPR防撞防割、极寒保暖、防重油化浸渍等深度定制" }
         ];
 
         const MOCK_ORDERS = [
             { id: "FLD-260417-001", product: "16英寸加长特厚电焊手套", quantity: "5,000 双", date: "2026-04-10", status: "生产中", statusColor: "text-blue-600", icon: "clock" },
-            { id: "FLD-260322-089", product: "掌心加固双层耐磨手套", quantity: "12,000 双", date: "2026-03-22", status: "已发货 (海上)", statusColor: "text-orange-500", icon: "truck" },
-            { id: "FLD-260115-024", product: "定制Logo款牛皮手套", quantity: "2,000 双", date: "2026-01-15", status: "已交付", statusColor: "text-green-600", icon: "check-circle" }
+            { id: "FLD-260322-089", product: "60cm加长防咬宠物手套", quantity: "15,000 双", date: "2026-03-22", status: "已发货 (海上)", statusColor: "text-orange-500", icon: "truck" },
+            { id: "FLD-260115-024", product: "美式半皮帆布安全袖口手套", quantity: "8,000 双", date: "2026-01-15", status: "已交付", statusColor: "text-green-600", icon: "check-circle" }
         ];
 
         // ==========================================
@@ -73,6 +97,8 @@
             showLoginModal: false,
             loginMethod: 'wechat'
         };
+
+        let autoScrollInterval; // 用于爆款专区的轮播
 
         // ==========================================
         // 3. 业务逻辑函数 (Actions)
@@ -114,13 +140,60 @@
 
         function imgError(img) {
             img.onerror = null;
-            img.src = '福立得标志.jpg';
+            img.src = 'https://via.placeholder.com/600x400?text=FLIDER+GLOVES';
         }
 
         // ==========================================
-        // 4. 视图渲染函数 (Views)
+        // 4. 爆款专区自动滚动逻辑 (Auto Scroll)
         // ==========================================
-        
+        function initAutoScroll() {
+            clearInterval(autoScrollInterval);
+            const container = document.getElementById('hot-scroll-container');
+            if (!container) return;
+
+            autoScrollInterval = setInterval(() => {
+                // 如果鼠标悬停在容器上，暂停滚动
+                if(container.matches(':hover') || container.matches(':active')) return;
+
+                // 找到内部第一张卡片的宽度来计算滚动距离 (卡片宽度 + gap)
+                const firstCard = container.querySelector('div');
+                if(!firstCard) return;
+                
+                const cardWidth = firstCard.offsetWidth + 24; 
+                let nextScroll = container.scrollLeft + cardWidth;
+                
+                // 如果已经滑到底部附近，则复位到起点
+                if (nextScroll >= container.scrollWidth - container.clientWidth + 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollTo({ left: nextScroll, behavior: 'smooth' });
+                }
+            }, 3000); // 每 3 秒滚动一次
+        }
+
+        // ==========================================
+        // 5. 共享组件渲染 (Components)
+        // ==========================================
+        function renderProductCard(p) {
+            return `
+                <div class="bg-white border border-slate-200 overflow-hidden group hover:shadow-2xl transition duration-300 flex flex-col rounded-xl relative h-full">
+                    <div class="relative h-64 overflow-hidden bg-slate-100 shrink-0">
+                        ${p.isHot ? '<div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-black px-3 py-1 z-10 shadow-md rounded-full tracking-widest">HOT 爆款</div>' : ''}
+                        <img src="${p.img}" onerror="imgError(this)" alt="${p.name}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700 hover:scale-110" />
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <span class="text-xs font-bold text-red-800 tracking-widest uppercase mb-2">${p.category}</span>
+                        <h3 class="text-xl font-black text-slate-900 mb-3 leading-tight">${p.name}</h3>
+                        <p class="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed">${p.desc}</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+                            <span class="font-black text-lg text-slate-800">${p.price}</span>
+                            <button onclick="toggleLoginModal(true)" class="bg-slate-900 text-white px-5 py-2 text-sm font-bold rounded hover:bg-red-800 transition shadow-md whitespace-nowrap">获取工厂价</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderNavbar() {
             return `
             <nav class="fixed w-full z-50 bg-white border-b-4 border-red-800 shadow-md">
@@ -130,15 +203,15 @@
                             <img src="WhatsApp Image 2026-04-16 at 16.10.54.jpeg" onerror="imgError(this)" alt="福立得Logo" class="h-12 w-12 object-cover rounded border border-red-800 p-0.5" />
                             <div class="flex flex-col">
                                 <span class="text-2xl font-black tracking-tighter text-slate-900 leading-none">福立得</span>
-                                <span class="text-[0.65rem] font-bold tracking-widest text-red-800 uppercase">FLIDER B2B</span>
+                                <span class="text-[0.65rem] font-bold tracking-widest text-red-800 uppercase">FLIDER SAFETY</span>
                             </div>
                         </div>
 
                         <div class="hidden lg:flex items-center space-x-8 font-black text-sm tracking-widest text-slate-700">
                             <button onclick="navigate('home')" class="hover:text-red-800 ${state.currentView === 'home' ? 'text-red-800 border-b-2 border-red-800' : ''}">首页</button>
-                            <button onclick="navigate('categories')" class="hover:text-red-800 ${state.currentView === 'categories' ? 'text-red-800 border-b-2 border-red-800' : ''}">产品分类</button>
-                            <button onclick="navigate('hot')" class="hover:text-red-800 ${state.currentView === 'hot' ? 'text-red-800 border-b-2 border-red-800' : ''}">热销商品</button>
-                            <button onclick="navigate('all')" class="hover:text-red-800 ${state.currentView === 'all' ? 'text-red-800 border-b-2 border-red-800' : ''}">全部商品</button>
+                            <button onclick="navigate('categories')" class="hover:text-red-800 ${state.currentView === 'categories' ? 'text-red-800 border-b-2 border-red-800' : ''}">定制类目</button>
+                            <button onclick="navigate('hot')" class="hover:text-red-800 ${state.currentView === 'hot' ? 'text-red-800 border-b-2 border-red-800' : ''}">热销爆款</button>
+                            <button onclick="navigate('all')" class="hover:text-red-800 ${state.currentView === 'all' ? 'text-red-800 border-b-2 border-red-800' : ''}">商品矩阵</button>
                             <button onclick="navigate('orders')" class="hover:text-red-800 ${state.currentView === 'orders' ? 'text-red-800 border-b-2 border-red-800' : ''}">订单记录</button>
                         </div>
 
@@ -146,11 +219,11 @@
                             ${state.isLoggedIn ? `
                                 <div class="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-full cursor-pointer hover:bg-slate-200 transition" onclick="navigate('orders')">
                                     <i data-lucide="user" class="w-5 h-5 text-red-800"></i>
-                                    <span>采购商 8099</span>
+                                    <span>客户 8099</span>
                                 </div>
                             ` : `
-                                <button onclick="toggleLoginModal(true)" class="flex items-center gap-2 bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition">
-                                    <i data-lucide="log-in" class="w-4 h-4"></i> B2B 登录
+                                <button onclick="toggleLoginModal(true)" class="flex items-center gap-2 bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition shadow-lg shadow-red-900/20">
+                                    <i data-lucide="log-in" class="w-4 h-4"></i> 客户登录
                                 </button>
                             `}
                         </div>
@@ -166,15 +239,15 @@
                 ${state.isMenuOpen ? `
                     <div class="lg:hidden bg-white border-t border-slate-200 shadow-xl absolute w-full z-40">
                         <div class="flex flex-col p-4 space-y-4 font-bold text-slate-700">
-                            <button onclick="navigate('home')" class="text-left py-2">首页</button>
-                            <button onclick="navigate('categories')" class="text-left py-2">产品分类</button>
-                            <button onclick="navigate('hot')" class="text-left py-2">热销商品</button>
-                            <button onclick="navigate('all')" class="text-left py-2">全部商品</button>
-                            <button onclick="navigate('orders')" class="text-left py-2 text-red-800">订单记录</button>
+                            <button onclick="navigate('home')" class="text-left py-2 hover:text-red-800">首页</button>
+                            <button onclick="navigate('categories')" class="text-left py-2 hover:text-red-800">定制类目</button>
+                            <button onclick="navigate('hot')" class="text-left py-2 hover:text-red-800">热销爆款</button>
+                            <button onclick="navigate('all')" class="text-left py-2 hover:text-red-800">商品矩阵</button>
+                            <button onclick="navigate('orders')" class="text-left py-2 hover:text-red-800">订单记录</button>
                             <hr />
                             ${state.isLoggedIn ? `
                                 <div class="flex items-center gap-2 text-red-800 py-2" onclick="navigate('orders')">
-                                    <i data-lucide="user" class="w-5 h-5"></i> 采购商 8099
+                                    <i data-lucide="user" class="w-5 h-5"></i> 客户 8099
                                 </div>
                             ` : `
                                 <button onclick="toggleLoginModal(true)" class="flex items-center justify-center gap-2 bg-red-800 text-white w-full py-3 rounded">
@@ -192,15 +265,15 @@
             if (!state.showLoginModal) return '';
             return `
             <div class="fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center backdrop-blur-sm p-4">
-                <div class="bg-white max-w-md w-full rounded-xl shadow-2xl overflow-hidden relative">
-                    <button onclick="toggleLoginModal(false)" class="absolute right-4 top-4 text-slate-400 hover:text-slate-800">
+                <div class="bg-white max-w-md w-full rounded-xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200">
+                    <button onclick="toggleLoginModal(false)" class="absolute right-4 top-4 text-slate-400 hover:text-slate-800 transition">
                         <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                     
                     <div class="p-8">
                         <div class="text-center mb-8">
                             <h2 class="text-3xl font-black text-slate-900">欢迎回来</h2>
-                            <p class="text-slate-500 mt-2 font-bold">福立得 B2B 客户专属订货系统</p>
+                            <p class="text-slate-500 mt-2 font-bold">福立得客户专属系统</p>
                         </div>
 
                         <div class="flex mb-6 border-b-2 border-slate-100">
@@ -214,11 +287,11 @@
 
                         ${state.loginMethod === 'wechat' ? `
                             <div class="flex flex-col items-center py-6">
-                                <div class="w-48 h-48 bg-slate-100 rounded-lg flex items-center justify-center mb-4 border border-slate-200">
-                                    <i data-lucide="qr-code" class="w-32 h-32 text-slate-800"></i>
+                                <div class="w-48 h-48 bg-slate-100 rounded-lg flex items-center justify-center mb-4 border border-slate-200 p-2">
+                                    <img src="9659.png" alt="WeChat QR" class="w-full h-full object-contain" />
                                 </div>
-                                <p class="text-sm text-slate-500 mb-6 text-center">请使用微信扫一扫<br/>直接登录/注册福立得 B2B 系统</p>
-                                <button onclick="handleLogin()" class="bg-green-600 text-white w-full py-3 rounded font-bold hover:bg-green-700 transition">
+                                <p class="text-sm text-slate-500 mb-6 text-center">请使用微信扫一扫<br/>直接登录/注册福立得系统</p>
+                                <button onclick="handleLogin()" class="bg-green-600 text-white w-full py-3 rounded font-bold hover:bg-green-700 transition shadow-lg">
                                     (演示) 点击模拟扫码成功
                                 </button>
                             </div>
@@ -232,39 +305,74 @@
                                     <label class="block text-sm font-bold text-slate-700 mb-1">密码</label>
                                     <input type="password" required class="w-full border border-slate-300 rounded px-4 py-3 focus:outline-none focus:border-red-800" placeholder="••••••••" />
                                 </div>
-                                <button type="submit" class="bg-red-800 text-white w-full py-3 mt-4 rounded font-bold hover:bg-red-900 transition">
+                                <button type="submit" class="bg-red-800 text-white w-full py-3 mt-4 rounded font-bold hover:bg-red-900 transition shadow-lg">
                                     登 录
                                 </button>
                             </form>
                         `}
                     </div>
                     <div class="bg-slate-50 p-4 text-center text-xs text-slate-500 border-t border-slate-100">
-                        仅限福立得认证企业客户及代理商登录
+                        仅限福立得认证客户登录
                     </div>
                 </div>
             </div>
             `;
         }
 
+        // ==========================================
+        // 6. 视图渲染页面 (Page Renderers)
+        // ==========================================
         function renderHome() {
+            // 获取前 6 款爆款，并包裹在适配横向滚动的固定宽度容器中
+            let hotProductsHtml = MOCK_PRODUCTS.filter(p => p.isHot).slice(0, 6).map(p => `
+                <div class="min-w-[300px] md:min-w-[360px] h-full shrink-0 snap-start flex flex-col">
+                    ${renderProductCard(p)}
+                </div>
+            `).join('');
+
             return `
             <div class="pt-20">
+                <!-- Hero Section -->
                 <section class="bg-slate-900 text-white py-24 lg:py-32 relative overflow-hidden">
                     <div class="absolute inset-0 opacity-30">
                         <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1920" onerror="imgError(this)" alt="bg" class="w-full h-full object-cover" />
                     </div>
                     <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                         <div>
-                            <div class="bg-red-800 inline-block px-3 py-1 font-bold text-xs mb-6 transform -skew-x-12">10年深耕 · 极致防护</div>
-                            <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-6">重定义<br/><span class="text-red-500 underline decoration-8 underline-offset-8">皮革防御</span></h1>
-                            <p class="text-slate-300 text-lg mb-8 max-w-md">福立得专注牛二层皮电焊防护，为全球重工业提供超越标准的专业级手部保护方案。支持深度全定制。</p>
-                            <button onclick="navigate('all')" class="bg-red-700 text-white px-8 py-4 font-black hover:bg-red-600 transition flex items-center gap-2 w-fit">
-                                浏览全部商品 <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            <div class="bg-red-800 inline-block px-3 py-1 font-bold text-xs mb-6 transform -skew-x-12">10年深耕源头大厂 · 全品类皮革防护</div>
+                            <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-6">全领域<br/><span class="text-red-500 underline decoration-8 underline-offset-8">皮革劳保专家</span></h1>
+                            <p class="text-slate-300 text-lg mb-8 max-w-lg leading-relaxed">福立得全面覆盖半皮搬运、专业司机、极端焊接及防咬抓宠物防护等五大场景。以极致物理防御保护劳动者，支持全维度 OEM/ODM 定制贴牌。</p>
+                            <button onclick="navigate('all')" class="bg-red-700 text-white px-8 py-4 font-black hover:bg-red-600 transition flex items-center gap-2 w-fit shadow-lg shadow-red-900/50">
+                                浏览商品矩阵 <i data-lucide="chevron-right" class="w-5 h-5"></i>
                             </button>
                         </div>
-                        <div class="hidden md:block">
-                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" onerror="imgError(this)" alt="材料" class="rounded border-8 border-slate-800 shadow-2xl transform rotate-3" />
+                        <div class="hidden md:block relative">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" onerror="imgError(this)" alt="全品类皮手套" class="rounded border-8 border-slate-800 shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500" />
                         </div>
+                    </div>
+                </section>
+
+                <!-- 首页热销爆款专区 (全屏高度自适应 + 横向滑动版) -->
+                <section class="min-h-[85vh] flex flex-col justify-center py-16 bg-slate-100 border-t border-slate-200 overflow-hidden relative">
+                    <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col h-full">
+                        <div class="flex justify-between items-end mb-8 border-b-2 border-slate-200 pb-4 shrink-0">
+                            <div>
+                                <h2 class="text-4xl font-black text-slate-900 mb-2">热销爆款 <span class="text-red-800 italic">/ HOT</span></h2>
+                                <p class="text-slate-500 font-bold">精选市场高复购 SKU，支持左右滑动浏览。</p>
+                            </div>
+                            <button onclick="navigate('hot')" class="text-red-800 font-bold hover:underline flex items-center gap-2 hidden md:flex shrink-0">
+                                浏览更多爆款 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- 横向滚动容器 -->
+                        <div id="hot-scroll-container" class="flex overflow-x-auto gap-6 pb-6 pt-2 snap-x snap-mandatory custom-scrollbar flex-1 items-stretch">
+                            ${hotProductsHtml}
+                        </div>
+
+                        <button onclick="navigate('hot')" class="w-full text-center mt-6 py-4 bg-white border border-slate-300 text-slate-700 font-bold rounded-lg hover:bg-red-800 hover:text-white hover:border-red-800 transition md:hidden block shrink-0">
+                            查看所有热销产品
+                        </button>
                     </div>
                 </section>
             </div>
@@ -275,146 +383,181 @@
             return `
             <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
                 <div class="mb-12">
-                    <h1 class="text-4xl font-black text-slate-900 mb-4">产品分类与全能定制系统</h1>
-                    <p class="text-slate-500 font-bold text-lg max-w-3xl">福立得不仅是生产商，更是您的“专属皮革工程部”。基于 10 年真实场景数据，我们为您提供四大核心工况的【全维度定制】，从一张生皮的厚度，到一根防火线的走向，全部由您定义，满足您的 OEM/ODM 贴牌需求。</p>
+                    <h1 class="text-4xl font-black text-slate-900 mb-4">全维度皮革手套定制体系</h1>
+                    <p class="text-slate-500 font-bold text-lg max-w-3xl leading-relaxed">基于 10 年海内外真实出货数据，我们将皮革防护精准划分为【五大核心工况】。从皮料甄选、版型工学剪裁到特种功能叠加，全面满足您的专属定制需求与品牌代工。</p>
                 </div>
 
                 <div class="space-y-8">
-                    <!-- 1. 高强度电焊防护 -->
+                    <!-- 1. 电焊系列 -->
                     <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
                         <div class="p-8 md:flex gap-8 items-start">
                             <div class="bg-red-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
                                 <i data-lucide="flame" class="w-16 h-16 text-red-700 mb-4"></i>
-                                <h3 class="text-2xl font-black text-slate-800">高强度电焊防护</h3>
-                                <span class="mt-2 bg-red-800 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">EN407 4级热防护</span>
+                                <h3 class="text-2xl font-black text-slate-800">电焊系列</h3>
+                                <span class="mt-2 bg-red-800 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">EN407 隔热阻燃</span>
                             </div>
                             <div class="md:w-3/4 mt-6 md:mt-0">
-                                <p class="text-slate-600 font-bold mb-6 text-lg">专为造船、重钢结构等极限飞溅环境设计。抗熔融金属滴落，切断辐射热传导。</p>
+                                <p class="text-slate-600 font-bold mb-6 text-lg">专为电弧焊及高精密TIG氩弧焊设计，切断辐射热传导，抵御极限飞溅。</p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">皮料厚度定制</div>
-                                        <div class="text-sm font-bold text-slate-800">1.2mm - 1.5mm 特级牛二层皮 / 肩皮</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">电弧焊定制 (Stick/MIG)</div>
+                                        <div class="text-sm font-bold text-slate-800">1.3mm 特级牛二层皮，复合阻燃内里，全凯夫拉(Kevlar)防火线</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">内胆与隔热层定制</div>
-                                        <div class="text-sm font-bold text-slate-800">纯棉吸汗帆布 / 复合阻燃抓绒 / 航空级隔热棉</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">氩弧焊定制 (TIG)</div>
+                                        <div class="text-sm font-bold text-slate-800">0.6mm 出口级纯头层山羊皮，食指无缝剪裁，极致控丝</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">缝制与结构定制</div>
-                                        <div class="text-sm font-bold text-slate-800">全系 100% 杜邦凯夫拉 (Kevlar®) 防火线，虎口皮条补强</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">护袖与补强设计</div>
+                                        <div class="text-sm font-bold text-slate-800">虎口皮条防磨补强，14/16/18 英寸护臂加长护筒定制</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">外观与版型定制</div>
-                                        <div class="text-sm font-bold text-slate-800">14/16/18 英寸护袖加长，专属品牌防伪钢印、织标定制</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">极端隔热定制</div>
+                                        <div class="text-sm font-bold text-slate-800">手背复合耐 1000℃ 铝箔隔热层，专供炼钢等高温作业</div>
                                     </div>
                                 </div>
-                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
-                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit shadow-md">
+                                    查看电焊产品矩阵 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 2. 重工业耐磨搬运 -->
+                    <!-- 2. 半皮系列 -->
                     <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
                         <div class="p-8 md:flex gap-8 items-start">
                             <div class="bg-orange-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
-                                <i data-lucide="package" class="w-16 h-16 text-orange-600 mb-4"></i>
-                                <h3 class="text-2xl font-black text-slate-800">重工业耐磨搬运</h3>
-                                <span class="mt-2 bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">掌心双层加固技术</span>
+                                <i data-lucide="briefcase" class="w-16 h-16 text-orange-600 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">半皮系列</h3>
+                                <span class="mt-2 bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">高性价比 耐磨抗撕裂</span>
                             </div>
                             <div class="md:w-3/4 mt-6 md:mt-0">
-                                <p class="text-slate-600 font-bold mb-6 text-lg">应对矿山开采、五金冲压、建筑装卸等高摩擦、高切割风险环境，提供极致物理防御。</p>
+                                <p class="text-slate-600 font-bold mb-6 text-lg">需求广阔的劳保之王。帆布与牛皮的完美拼接，应对矿山、建筑装卸等高摩擦作业。</p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">皮材混搭定制</div>
-                                        <div class="text-sm font-bold text-slate-800">A级头层牛皮(耐油污) / 优质猪皮(高透气) / 拼接重型帆布</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">材质拼接定制</div>
+                                        <div class="text-sm font-bold text-slate-800">掌心特级牛皮 + 手背加厚纯棉条纹帆布，兼顾耐磨与透气</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防御升级定制</div>
-                                        <div class="text-sm font-bold text-slate-800">掌心/食指双层牛皮贴片，可内置玻纤防割内衬 (ANSI Cut A4+)</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">掌心双层加固 (Double Palm)</div>
+                                        <div class="text-sm font-bold text-slate-800">食指及掌底易磨损区叠加牛皮贴片，使用寿命提升 200%</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">抗冲击防砸定制</div>
-                                        <div class="text-sm font-bold text-slate-800">手背可复合 TPR 橡胶防撞模块，全方位保护指骨与掌骨</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">安全袖口设计 (Safety Cuff)</div>
+                                        <div class="text-sm font-bold text-slate-800">2.5英寸胶化安全硬袖口，保护手腕防砸，支持紧急快速脱卸</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">袖口与穿脱定制</div>
-                                        <div class="text-sm font-bold text-slate-800">安全硬袖口 (Safety Cuff) / 罗纹针织松紧袖口 / 快速脱卸设计</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防割安全升级</div>
+                                        <div class="text-sm font-bold text-slate-800">掌心可隐形内置凯夫拉防割内衬，满足 ANSI 高级防割标准</div>
                                     </div>
                                 </div>
-                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
-                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit shadow-md">
+                                    查看半皮产品矩阵 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. 极端环境特种手套 -->
+                    <!-- 3. 司机手套系列 -->
                     <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
                         <div class="p-8 md:flex gap-8 items-start">
                             <div class="bg-blue-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
-                                <i data-lucide="shield-check" class="w-16 h-16 text-blue-700 mb-4"></i>
-                                <h3 class="text-2xl font-black text-slate-800">极端环境特种手套</h3>
-                                <span class="mt-2 bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">防化、超高温、极寒保暖</span>
+                                <i data-lucide="car" class="w-16 h-16 text-blue-700 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">司机手套系列</h3>
+                                <span class="mt-2 bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">工学剪裁 高透气防油</span>
                             </div>
                             <div class="md:w-3/4 mt-6 md:mt-0">
-                                <p class="text-slate-600 font-bold mb-6 text-lg">跨界材料复合工艺。打破纯皮革的物理极限，为炼钢炉前、冷库液氮、石化平台量身定制。</p>
+                                <p class="text-slate-600 font-bold mb-6 text-lg">专为长途货车驾驶、叉车操控及物流仓储开发，强调全天候佩戴的灵活性与舒适度。</p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">反辐射热复合定制</div>
-                                        <div class="text-sm font-bold text-slate-800">手背复合耐 1000℃ 铝箔防火隔热层，掌心配高密度耐高温皮</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">顶级皮料甄选</div>
+                                        <div class="text-sm font-bold text-slate-800">A级头层牛皮(防油污)、高透气猪头层皮(排汗)、极软鹿皮</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">极寒保暖系统定制</div>
-                                        <div class="text-sm font-bold text-slate-800">零下30度环境：内部填充 3M Thinsulate™ 保暖棉或高克重仿兔毛</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">Keystone 独立大拇指</div>
+                                        <div class="text-sm font-bold text-slate-800">符合人体自然握持弧度的独立拼接设计，极大降低手部疲劳感</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防油浸渍处理</div>
-                                        <div class="text-sm font-bold text-slate-800">皮料深度防水、防油污化学涂层浸渍工艺处理</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">松紧防尘收口 (Shirred Back)</div>
+                                        <div class="text-sm font-bold text-slate-800">手背波浪形松紧带，确保完美包裹手腕，防止微尘杂物落入</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">多重防护技术叠加</div>
-                                        <div class="text-sm font-bold text-slate-800">可将防割、防砸、防寒、耐油四种性能集中开发于一双皮手套</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">滚边与包边定制</div>
+                                        <div class="text-sm font-bold text-slate-800">颜色定制化布包边，便于区分尺码与提升品牌识别度</div>
                                     </div>
                                 </div>
-                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
-                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit shadow-md">
+                                    查看司机产品矩阵 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 4. 轻量级精密操作 -->
+                    <!-- 4. 宠物防咬抓系列 -->
+                    <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                        <div class="p-8 md:flex gap-8 items-start">
+                            <div class="bg-green-50 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
+                                <i data-lucide="shield-plus" class="w-16 h-16 text-green-700 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">宠物防咬系列</h3>
+                                <span class="mt-2 bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">加长加厚 坚韧防刺穿</span>
+                            </div>
+                            <div class="md:w-3/4 mt-6 md:mt-0">
+                                <p class="text-slate-600 font-bold mb-6 text-lg">专供宠物医疗、警犬训练及爬宠饲养场景。在保证手掌灵活度的同时，提供整条小臂的安全防护。</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">超长护臂定制</div>
+                                        <div class="text-sm font-bold text-slate-800">45cm - 60cm 加长袖筒设计，完整覆盖手腕至手肘区域防抓挠</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防撕咬厚皮工艺</div>
+                                        <div class="text-sm font-bold text-slate-800">选用 1.4mm 高密度牛肩皮，质地坚韧，有效分散猛犬咬合力</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">内衬防御系统</div>
+                                        <div class="text-sm font-bold text-slate-800">可定制内置凯夫拉防割纤维内胆或高密度加厚海绵，吸收刺破冲击</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-lg">
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">柔韧性优化</div>
+                                        <div class="text-sm font-bold text-slate-800">针对猫咪洗护开发羊皮/鹿皮复合款，满足剪指甲等细微操作需求</div>
+                                    </div>
+                                </div>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit shadow-md">
+                                    查看宠物产品矩阵 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. 极端特种系列 -->
                     <div class="bg-white border-2 border-slate-100 hover:border-red-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
                         <div class="p-8 md:flex gap-8 items-start">
                             <div class="bg-slate-100 p-6 rounded-xl md:w-1/4 flex flex-col items-center justify-center text-center shrink-0">
-                                <i data-lucide="list-ordered" class="w-16 h-16 text-slate-700 mb-4"></i>
-                                <h3 class="text-2xl font-black text-slate-800">轻量级精密操作</h3>
-                                <span class="mt-2 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">高灵敏度防油作业</span>
+                                <i data-lucide="zap" class="w-16 h-16 text-slate-700 mb-4"></i>
+                                <h3 class="text-2xl font-black text-slate-800">极端特种系列</h3>
+                                <span class="mt-2 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">破限科技复合叠加</span>
                             </div>
                             <div class="md:w-3/4 mt-6 md:mt-0">
-                                <p class="text-slate-600 font-bold mb-6 text-lg">被称为“第二层皮肤”。专为 TIG 氩弧焊精密填丝、汽车零配件精细装配、仪器调校而生。</p>
+                                <p class="text-slate-600 font-bold mb-6 text-lg">跨界新材料复合工艺。打破传统皮革物理极限，为极寒冷库、石油勘探等恶劣环境提供全能保护。</p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">顶级薄皮选材定制</div>
-                                        <div class="text-sm font-bold text-slate-800">0.6mm - 0.8mm A级纯头层山羊皮 / 鹿皮 / 柔软猪头层</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">极寒保暖系统定制</div>
+                                        <div class="text-sm font-bold text-slate-800">内置高克重仿兔毛或 3M Thinsulate™ 极地棉，抵御零下30度严寒</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">无缝人体工学定制</div>
-                                        <div class="text-sm font-bold text-slate-800">食指无接缝设计 (Seamless Index Finger)，大幅提升握持精准度</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">防重砸减震系统 (Impact TPR)</div>
+                                        <div class="text-sm font-bold text-slate-800">手背满覆 TPR 热塑性橡胶减震模块，保护指骨免受重物突发砸击</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">无内里 / 半隔热定制</div>
-                                        <div class="text-sm font-bold text-slate-800">掌心无内里保留极致触感，手背增加薄层羊毛隔绝轻微热辐射</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">化学防油浸渍处理</div>
+                                        <div class="text-sm font-bold text-slate-800">皮革经过特殊涂层深加工密封，大幅提升防水与抗油污能力</div>
                                     </div>
                                     <div class="bg-slate-50 p-4 rounded-lg">
-                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">腕部锁定系统定制</div>
-                                        <div class="text-sm font-bold text-slate-800">魔术贴粘扣 (Velcro) / 弹力橡筋收口系统，防止细杂物落入</div>
+                                        <div class="text-xs font-black text-slate-400 mb-1 uppercase tracking-widest">特种防割定制</div>
+                                        <div class="text-sm font-bold text-slate-800">掌心复合不锈钢丝或高强聚乙烯纤维，满足最高级别防切割测试</div>
                                     </div>
                                 </div>
-                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit">
-                                    查看该系列 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                <button onclick="navigate('all')" class="bg-red-800 text-white px-6 py-3 rounded font-black hover:bg-red-900 transition flex items-center gap-2 w-fit shadow-md">
+                                    查看特种产品矩阵 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                 </button>
                             </div>
                         </div>
@@ -422,26 +565,6 @@
 
                 </div>
             </div>
-            `;
-        }
-
-        function renderProductCard(p) {
-            return `
-                <div class="bg-white border border-slate-200 overflow-hidden group hover:shadow-2xl transition duration-300 flex flex-col rounded-xl">
-                    <div class="relative h-64 overflow-hidden bg-slate-100">
-                        ${p.isHot ? '<div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-black px-3 py-1 z-10 shadow-md rounded-full tracking-widest">HOT 热销</div>' : ''}
-                        <img src="${p.img}" onerror="imgError(this)" alt="${p.name}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500 hover:scale-105" />
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <span class="text-xs font-bold text-red-800 tracking-widest uppercase mb-2">${p.category}</span>
-                        <h3 class="text-xl font-black text-slate-900 mb-3 leading-tight">${p.name}</h3>
-                        <p class="text-slate-500 text-sm mb-6 line-clamp-2">${p.desc}</p>
-                        <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
-                            <span class="font-black text-lg text-slate-800">${p.price}</span>
-                            <button onclick="toggleLoginModal(true)" class="bg-slate-900 text-white px-5 py-2 text-sm font-bold rounded hover:bg-red-800 transition shadow-md">获取大货价</button>
-                        </div>
-                    </div>
-                </div>
             `;
         }
 
@@ -474,12 +597,12 @@
 
             return `
             <div class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-                <div class="flex justify-between items-end mb-10">
+                <div class="flex justify-between items-end mb-10 border-b-2 border-slate-200 pb-6">
                     <div>
                         <h1 class="text-4xl font-black text-slate-900 mb-2">${title}</h1>
                         <p class="text-slate-500 font-bold">${subtitle}</p>
                     </div>
-                    ${title !== '全部商品' ? `<button onclick="navigate('all')" class="hidden sm:block text-red-800 font-bold hover:underline">查看全部</button>` : ''}
+                    ${title !== '全部商品矩阵' ? `<button onclick="navigate('all')" class="hidden sm:block text-red-800 font-bold hover:underline bg-red-50 px-4 py-2 rounded">查看全部商品矩阵</button>` : ''}
                 </div>
                 ${contentHtml}
             </div>
@@ -494,7 +617,7 @@
                         <h1 class="text-4xl font-black text-slate-900 mb-2">订单记录与追溯</h1>
                         <p class="text-slate-500 font-bold">透明化管理，随时掌握大货生产及物流进度。</p>
                     </div>
-                    <button class="bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition flex items-center gap-2">
+                    <button class="bg-red-800 text-white px-6 py-2 rounded font-bold hover:bg-red-900 transition flex items-center gap-2 shadow-md">
                         <i data-lucide="list-ordered" class="w-5 h-5"></i> 快速返单
                     </button>
                 </div>
@@ -535,15 +658,14 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- Dashboard Stats -->
                     <div class="bg-slate-50 p-6 border-t border-slate-200 grid grid-cols-3 gap-4 text-center">
                         <div>
-                            <div class="text-3xl font-black text-slate-800">3</div>
+                            <div class="text-3xl font-black text-slate-800">12</div>
                             <div class="text-xs font-bold text-slate-500 mt-1">历史总订单数</div>
                         </div>
                         <div class="border-l border-r border-slate-200">
-                            <div class="text-3xl font-black text-red-700">19,000</div>
-                            <div class="text-xs font-bold text-slate-500 mt-1">累计提货双数</div>
+                            <div class="text-3xl font-black text-red-700">128,000</div>
+                            <div class="text-xs font-bold text-slate-500 mt-1">累计出货双数</div>
                         </div>
                         <div>
                             <div class="text-3xl font-black text-slate-800">1</div>
@@ -557,14 +679,14 @@
 
         function renderFooter() {
             return `
-            <!-- 客户询价表单模块 (Message & Email Box) -->
+            <!-- 客户询价表单模块 (Message Box) -->
             <section class="bg-white py-16 border-t border-slate-200">
                 <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-4xl font-black text-slate-900 mb-4 flex items-center gap-3">
                             <i data-lucide="mail" class="w-8 h-8 text-red-800"></i> 发送定制需求
                         </h2>
-                        <p class="text-slate-500 font-bold mb-8 text-lg">我们的工程团队将直接接收您的询价，并于 24 小时内将方案发送至您的邮箱。</p>
+                        <p class="text-slate-500 font-bold mb-8 text-lg">我们的工程团队将直接接收您的询价，并于 24 小时内将全系列皮手套方案发送至您的邮箱。</p>
                         <form onsubmit="alert('询盘消息已发送至福立得后台！我们的工程师将尽快通过邮箱联系您！'); return false;" class="space-y-4">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
@@ -572,13 +694,13 @@
                                     <input type="text" required class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="怎么称呼您？" />
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-bold text-slate-700 mb-1">电子邮箱 (Email Box)</label>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">电子邮箱 (Email)</label>
                                     <input type="email" required class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="用于接收方案和报价" />
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-1">具体需求 (Message Box)</label>
-                                <textarea required rows="4" class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="例如：我们需要采购 2000 双高强度电焊手套，要求加厚牛二层皮并印制我们的 Logo..."></textarea>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">具体需求描述 (Message Box)</label>
+                                <textarea required rows="4" class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 bg-slate-50" placeholder="例如：我们需要采购5000双半皮帆布手套和2000双防咬宠物手套，要求A级皮并印制我们的Logo..."></textarea>
                             </div>
                             <button type="submit" class="bg-red-800 text-white px-8 py-4 rounded-lg font-black tracking-widest hover:bg-red-900 transition shadow-lg w-full md:w-auto flex items-center justify-center gap-2">
                                 发送询盘消息 Send Message <i data-lucide="send" class="w-5 h-5"></i>
@@ -587,7 +709,7 @@
                     </div>
                     <div class="hidden lg:block relative">
                         <div class="absolute inset-0 bg-red-800 rounded-2xl transform rotate-3 scale-105 opacity-10"></div>
-                        <img src="https://images.unsplash.com/photo-1590674852885-ec397750335e?auto=format&fit=crop&q=80&w=800" class="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-500 border-8 border-white" alt="福立得定制服务" />
+                        <img src="https://images.unsplash.com/photo-1590674852885-ec397750335e?auto=format&fit=crop&q=80&w=800" class="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-500 border-8 border-white" alt="福立得全品类定制" />
                     </div>
                 </div>
             </section>
@@ -599,9 +721,9 @@
                     <div>
                         <div class="flex items-center gap-3 mb-6">
                             <img src="WhatsApp Image 2026-04-16 at 16.10.54.jpeg" onerror="imgError(this)" alt="福立得Logo" class="h-10 w-10 object-cover rounded border border-red-800 p-0.5 bg-white" />
-                            <span class="text-2xl font-black tracking-tighter text-white">福立得 B2B</span>
+                            <span class="text-2xl font-black tracking-tighter text-white">福立得官网</span>
                         </div>
-                        <p class="text-sm text-slate-400 mb-6 leading-relaxed">专注于高性能牛二层皮电焊手套，全品类支持 OEM/ODM。为全球重工业提供超越标准的专业级手部保护方案，一站式出海及内销工厂直供服务。</p>
+                        <p class="text-sm text-slate-400 mb-6 leading-relaxed">10年深耕，全品类皮革劳保源头工厂。覆盖电焊、半皮搬运、专业司机、宠物防咬抓及极寒特种防护。支持全维度 OEM/ODM 定制贴牌，一站式内外销工厂直供。</p>
                         <div class="text-xs font-bold uppercase tracking-widest text-slate-500">
                             © 2026 FLIDER SAFETY.<br/>All Rights Reserved.
                         </div>
@@ -613,10 +735,10 @@
                             <i data-lucide="message-circle" class="w-5 h-5 text-green-500"></i> 微信业务咨询
                         </h4>
                         <div class="bg-white p-2 rounded-lg inline-block mb-4 shadow-lg">
-                            <img src="wechat.jpg" alt="WeChat QR Code" class="w-32 h-32 object-contain" />
+                            <img src="9659.png" alt="WeChat QR Code" class="w-32 h-32 object-contain" />
                         </div>
                         <div class="text-center md:text-left">
-                            <p class="text-sm font-bold text-slate-300">添加微信号: <span class="text-green-400 select-all font-black text-lg tracking-wider block mt-1">worktogether8</span></p>
+                            <p class="text-sm font-bold text-slate-300">微信号: <span class="text-green-400 select-all font-black text-lg tracking-wider block mt-1">worktogether8</span></p>
                             <p class="text-xs text-slate-400 mt-2">对接人: Steven 小袁人</p>
                             <p class="text-xs text-slate-500">(中国香港 离岛区)</p>
                         </div>
@@ -628,11 +750,10 @@
                             <i data-lucide="phone" class="w-5 h-5 text-green-400"></i> WhatsApp 国际业务
                         </h4>
                         <div class="bg-white p-2 rounded-lg inline-block mb-4 shadow-lg">
-                            <img src="whatsapp.jpg" alt="WhatsApp QR Code" class="w-32 h-32 object-contain" />
+                            <img src="shared_qr_code.png" alt="WhatsApp QR Code" class="w-32 h-32 object-contain" />
                         </div>
-                        
                         <a href="https://wa.me/message/JF3NK3JK3BGUG1" target="_blank" class="w-full text-center text-sm font-black text-white bg-green-600 hover:bg-green-500 shadow-lg shadow-green-900/50 transition-all px-4 py-3 rounded-lg flex items-center justify-center gap-2">
-                            通过 WhatsApp 发消息给Steven
+                            WhatsApp 发消息给Steven
                         </a>
                         <p class="text-xs text-slate-400 mt-3 text-center md:text-left w-full">Steven - WhatsApp 商业账户</p>
                     </div>
@@ -655,9 +776,9 @@
             } else if (state.currentView === 'categories') {
                 content = renderCategories();
             } else if (state.currentView === 'hot') {
-                content = renderProductGrid("热销商品", "经市场验证的爆款，出海拿单利器。", true);
+                content = renderProductGrid("热销爆款", "精选全网高转化、高复购率爆品，出海及内销拿单利器。", true);
             } else if (state.currentView === 'all') {
-                content = renderProductGrid("全部商品", "支持参数修改与深度定制贴牌。", false);
+                content = renderProductGrid("全部商品矩阵", "全品类皮革覆盖，从通用搬运到专业电焊，支持深度定制贴牌。", false);
             } else if (state.currentView === 'orders') {
                 content = renderOrders();
             }
@@ -672,6 +793,13 @@
 
             // Initialize Lucide Icons after DOM update
             lucide.createIcons();
+
+            // 如果是首页，启动滚动条轮播
+            if (state.currentView === 'home') {
+                setTimeout(initAutoScroll, 100);
+            } else {
+                clearInterval(autoScrollInterval);
+            }
         }
 
         // 初始化启动应用
