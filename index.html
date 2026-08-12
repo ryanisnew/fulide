@@ -3,8 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="福立得皮革劳保手套厂位于中国茂名高州，提供工厂直供皮革安全手套，服务个人采购、批发客户、品牌客户、分销商及 OEM/ODM 定制需求。" />
+  <meta name="description" content="福立得皮革劳保手套厂位于中国广东茂名高州，面向进口商、PPE 分销商、批发客户和贴牌品牌，提供工厂直供 OEM/ODM 皮革焊接手套、司机手套、半皮劳保手套和宠物防护手套。" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="福立得皮革劳保手套厂 | OEM/ODM 皮革安全手套" />
+  <meta property="og:description" content="中国高州源头工厂，支持皮料、袖口、内里、Logo、尺码段和包装等 OEM/ODM 皮革劳保手套需求沟通。" />
+  <meta property="og:image" content="assets/hero-glove-wall.jpg" />
   <title>福立得皮革劳保手套厂 | 工厂直供 OEM/ODM 皮革安全手套</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Gaozhou Fulide Leather Products Co., Ltd.",
+      "alternateName": "高州市福立得皮革制品有限公司",
+      "description": "China source factory focused on OEM/ODM leather safety gloves for importers, PPE distributors, wholesalers and private-label buyers.",
+      "email": "delivervalue95@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gaozhou",
+        "addressRegion": "Guangdong",
+        "addressCountry": "CN"
+      },
+      "knowsAbout": [
+        "Leather welding gloves",
+        "Driver gloves",
+        "Semi-leather work gloves",
+        "Pet handling gloves",
+        "OEM glove packaging"
+      ]
+    }
+  </script>
   <style>
     :root {
       --red: #8b1e1e;
@@ -280,6 +308,58 @@
       font-weight: 700;
     }
 
+    .hero-rfq-panel {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1px;
+      margin-top: 18px;
+      overflow: hidden;
+      max-width: 780px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .hero-rfq-copy,
+    .hero-rfq-checklist {
+      padding: 18px;
+      background: rgba(10, 14, 23, 0.62);
+    }
+
+    .hero-rfq-copy strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .hero-rfq-copy span {
+      display: block;
+      margin-top: 7px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero-rfq-checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      list-style: none;
+    }
+
+    .hero-rfq-checklist li {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .hero-rfq-checklist li::before {
+      content: "+";
+      margin-right: 7px;
+      color: #efb15f;
+    }
+
     .buyer-bar {
       border-bottom: 1px solid var(--line);
       background: #fff;
@@ -454,6 +534,122 @@
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .rfq-pack {
+      background: #fff;
+    }
+
+    .rfq-pack-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .rfq-pack-lead {
+      display: grid;
+      align-content: space-between;
+      min-height: 100%;
+      padding: 28px;
+      border-radius: var(--radius);
+      background: #111827;
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .rfq-pack-lead .section-kicker {
+      color: #efb15f;
+    }
+
+    .rfq-pack-lead .lead {
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .rfq-pack-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .rfq-pack-stat {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .rfq-pack-stat strong {
+      display: block;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .rfq-pack-stat span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .rfq-pack-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .rfq-pack-card {
+      display: grid;
+      align-content: space-between;
+      min-height: 230px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8fafc;
+    }
+
+    .rfq-pack-card b {
+      display: block;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .rfq-pack-card h3 {
+      margin: 8px 0;
+      font-size: 21px;
+      line-height: 1.18;
+    }
+
+    .rfq-pack-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .rfq-pack-card button {
+      justify-self: start;
+      margin-top: 18px;
+      padding: 10px 13px;
+      border: 1px solid rgba(139, 30, 30, 0.22);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .rfq-pack-card button:hover {
+      border-color: var(--red);
+      background: #fff7f3;
     }
 
     .category-tabs {
@@ -970,9 +1166,13 @@
       }
 
       .hero-proof,
+      .hero-rfq-panel,
       .buyer-bar-grid,
       .process,
       .product-grid,
+      .rfq-pack-grid,
+      .rfq-pack-cards,
+      .rfq-pack-stats,
       .sku-strip,
       .feature-grid,
       .contact-grid,
@@ -1065,13 +1265,24 @@
       }
 
       .nav-links {
-        display: flex !important;
+        display: grid !important;
         flex-basis: 100%;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 12px;
-        padding: 0 0 12px 48px;
-        font-size: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        padding: 0 0 12px;
+        font-size: 11px;
+      }
+
+      .nav-links a {
+        min-width: 0;
+        padding: 8px 6px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        text-align: center;
+        overflow-wrap: anywhere;
       }
 
       .menu-toggle {
@@ -1089,6 +1300,18 @@
 
       .hero-proof {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-rfq-panel,
+      .hero-rfq-checklist,
+      .rfq-pack-cards {
+        grid-template-columns: 1fr;
+      }
+
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
       }
 
       .proof-item {
@@ -1126,6 +1349,7 @@
         <div class="nav-links" aria-label="Primary navigation">
           <a href="#capability">工厂实力</a>
           <a href="#products">产品系列</a>
+          <a href="#rfq-pack">询价准备</a>
           <a href="#oem">OEM/ODM</a>
           <a href="index-en.html">English</a>
           <a href="#contact">联系询价</a>
@@ -1143,30 +1367,44 @@
     <section class="hero" aria-label="Fulide factory hero">
       <div class="container">
         <div class="hero-content">
-          <div class="eyebrow">中国茂名高州 · 皮革劳保手套源头工厂</div>
-          <h1>源头工厂直供<br/>皮革劳保手套，<br/>支持 OEM/ODM 定制。</h1>
-          <p>福立得专注皮革劳保手套 10+ 年，服务个人采购、批发客户、品牌客户、分销商、采购团队以及 OEM/ODM 定制项目。</p>
+          <div class="eyebrow">皮革手部防护 · 中国高州源头工厂</div>
+          <h1>为你的市场制造<br/>OEM 皮革焊接与劳保手套。</h1>
+          <p>福立得帮助进口商、PPE 分销商和贴牌品牌，把真实工况转化为可复购的手套规格：从皮料选择、样品确认，到生产、包装和返单记录。</p>
           <div class="hero-actions">
             <a class="btn" href="#products">查看产品矩阵</a>
-            <a class="btn secondary" href="#contact">加入询价清单</a>
+            <a class="btn secondary" href="#rfq-pack">准备 RFQ 询盘</a>
           </div>
           <div class="hero-proof" aria-label="Factory highlights">
             <div class="proof-item">
-              <strong>10+</strong>
-              <span>年专注皮革劳保手套</span>
+              <strong>皮革手套</strong>
+              <span>聚焦焊接、司机和通用劳保用途</span>
             </div>
             <div class="proof-item">
-              <strong>6</strong>
-              <span>大核心品类覆盖多类需求</span>
+              <strong>多 SKU</strong>
+              <span>产品筛选、详情和询价清单一体化</span>
             </div>
             <div class="proof-item">
-              <strong>OEM</strong>
-              <span>支持 Logo、颜色、尺码和包装</span>
+              <strong>OEM / ODM</strong>
+              <span>沟通 Logo、配色、尺码段、袖口与包装</span>
             </div>
             <div class="proof-item">
-              <strong>ODM</strong>
-              <span>支持材料与版型开发</span>
+              <strong>证据导向</strong>
+              <span>展示真实产品、皮料、车缝和包装能力</span>
             </div>
+          </div>
+          <div class="hero-rfq-panel" aria-label="询价前需要准备的信息">
+            <div class="hero-rfq-copy">
+              <strong>发送 RFQ 前，先准备可报价的信息。</strong>
+              <span>福立得按具体产品、数量、目标市场和包装要求沟通报价，不用模糊承诺代替规格确认。</span>
+            </div>
+            <ul class="hero-rfq-checklist">
+              <li>产品照片或链接</li>
+              <li>预计数量</li>
+              <li>目标市场</li>
+              <li>包装 / Logo</li>
+              <li>文件要求</li>
+              <li>交期窗口</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1193,6 +1431,58 @@
           <b>面向定制买家</b>
           <strong>按真实使用需求沟通报价</strong>
           <span>提供使用场景、数量、参考图和目标成本，便于打样或批量生产。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="rfq-pack" id="rfq-pack" aria-label="询价准备包">
+      <div class="container">
+        <div class="rfq-pack-grid">
+          <div class="rfq-pack-lead">
+            <div>
+              <p class="section-kicker">RFQ 准备包</p>
+              <h2>把采购想法整理成工厂能报价的规格。</h2>
+              <p class="lead">进口商、PPE 分销商和贴牌客户可以直接选择最接近的采购包，把重点问题写入询盘备注，再补数量和目标市场。</p>
+            </div>
+            <div class="rfq-pack-stats" aria-label="询价准备重点">
+              <div class="rfq-pack-stat"><strong>6 项</strong><span>产品、材料、尺码、包装、数量、文件</span></div>
+              <div class="rfq-pack-stat"><strong>0 假提交</strong><span>只生成可复核的 WhatsApp / 邮件询盘文字</span></div>
+            </div>
+          </div>
+          <div class="rfq-pack-cards">
+            <article class="rfq-pack-card">
+              <div>
+                <b>Welding glove RFQ</b>
+                <h3>焊接手套采购包</h3>
+                <p>确认 TIG / MIG / 电弧焊用途、皮料等级、袖口长度、内里、车线、补强和尺码段。</p>
+              </div>
+              <button type="button" data-guide-category="电焊系列" data-guide-note="采购包：焊接手套。请根据 TIG / MIG / 电弧焊用途，确认皮料等级、袖口长度、内里、车线、补强、尺码段、包装、数量和目标市场。">带入询价备注</button>
+            </article>
+            <article class="rfq-pack-card">
+              <div>
+                <b>Distributor line</b>
+                <h3>分销商产品线包</h3>
+                <p>围绕电焊、司机、半皮和特殊防护组合 SKU，确认批发价格带、包装语言和返单稳定性。</p>
+              </div>
+              <button type="button" data-guide-category="全部" data-guide-note="采购包：分销商产品线。请按电焊、司机、半皮和特殊防护分别确认 SKU、目标价格带、包装语言、首单数量和返单计划。">带入询价备注</button>
+            </article>
+            <article class="rfq-pack-card">
+              <div>
+                <b>Private label</b>
+                <h3>贴牌包装开发包</h3>
+                <p>适合已有品牌或渠道客户，重点确认 Logo、标签、袋装、外箱唛头、颜色和市场语言。</p>
+              </div>
+              <button type="button" data-guide-category="OEM/ODM 定制需求" data-guide-note="采购包：贴牌包装。请确认 Logo 位置、标签、袋装、外箱唛头、颜色、市场语言、参考设计、数量和目标交付窗口。">带入询价备注</button>
+            </article>
+            <article class="rfq-pack-card">
+              <div>
+                <b>Compliance request</b>
+                <h3>文件与市场要求包</h3>
+                <p>如目标市场需要 EN 388、REACH、测试报告或声明，请先说明适用 SKU、标准和买家审核要求。</p>
+              </div>
+              <button type="button" data-guide-category="电焊系列" data-guide-note="采购包：文件与市场要求。请说明目标市场、适用 SKU、需要的标准或测试报告、买家审核要求、数量和计划时间。">带入询价备注</button>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -2240,6 +2530,13 @@
       setTimeout(() => toast.classList.remove("show"), 2400);
     }
 
+    function normalizeCategory(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/(?:gloves?|series|系列|手套)/g, "");
+    }
+
     async function copyText(text) {
       if (navigator.clipboard && window.isSecureContext) {
         try {
@@ -2289,6 +2586,34 @@
       activeCategory = button.dataset.category;
       renderTabs();
       renderProducts();
+    });
+
+    document.querySelectorAll("[data-guide-category]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const requestedCategory = button.dataset.guideCategory || "";
+        const requestedKey = normalizeCategory(requestedCategory);
+        const categoryTab = [...document.querySelectorAll("#categoryTabs button")].find(
+          (tab) => normalizeCategory(tab.textContent) === requestedKey
+        );
+        if (categoryTab) categoryTab.click();
+
+        const categoryField = document.getElementById("category");
+        if (categoryField) {
+          const option = [...categoryField.options].find(
+            (item) => normalizeCategory(item.textContent) === requestedKey
+          );
+          if (option) categoryField.value = option.value;
+        }
+
+        const note = button.dataset.guideNote;
+        const message = document.getElementById("message");
+        if (message && note && !message.value.includes(note)) {
+          message.value = message.value ? `${message.value}\n${note}` : note;
+        }
+
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        showToast("采购包已加入询盘备注。");
+      });
     });
 
     grid.addEventListener("click", (event) => {
