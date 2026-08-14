@@ -365,6 +365,54 @@
       background: #fff;
     }
 
+    .factory-video {
+      background: #f7f4ef;
+    }
+
+    .factory-video video {
+      display: block;
+      width: 100%;
+      max-height: 620px;
+      object-fit: contain;
+      background: #0b0f17;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .scene-card {
+      overflow: hidden;
+      border: 1px solid rgba(18, 24, 38, 0.1);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .scene-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .scene-card-copy {
+      padding: 18px;
+    }
+
+    .scene-card-copy strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .scene-card-copy p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     .buyer-bar-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -476,6 +524,73 @@
       font-weight: 800;
     }
 
+    .factory-visual {
+      display: grid;
+      gap: 14px;
+    }
+
+    .factory-visual-main {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: #111827;
+    }
+
+    .factory-visual-main img {
+      width: 100%;
+      min-height: 470px;
+      object-fit: cover;
+    }
+
+    .factory-visual-main figcaption {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      background: rgba(18, 24, 38, 0.84);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .factory-proof-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid rgba(18, 24, 38, 0.12);
+      border-radius: var(--radius);
+      background: rgba(18, 24, 38, 0.12);
+    }
+
+    .factory-proof {
+      min-height: 112px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .factory-proof b {
+      display: block;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .factory-proof span {
+      display: block;
+      margin-top: 8px;
+      color: #303847;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -500,6 +615,51 @@
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .factory-gallery {
+      background: #fff;
+    }
+
+    .factory-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .factory-gallery-tile {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #111827;
+      min-height: 260px;
+    }
+
+    .factory-gallery-tile img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .factory-gallery-tile:hover img {
+      transform: scale(1.04);
+    }
+
+    .factory-gallery-tile span {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      padding: 9px 10px;
+      border-radius: 6px;
+      background: rgba(18, 24, 38, 0.84);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.25;
     }
 
     .process {
@@ -556,6 +716,10 @@
       background: #111827;
       color: #fff;
       box-shadow: var(--shadow);
+    }
+
+    .rfq-pack-lead h2 {
+      font-size: clamp(30px, 4vw, 48px);
     }
 
     .rfq-pack-lead .section-kicker {
@@ -623,7 +787,7 @@
     }
 
     .rfq-pack-card h3 {
-      margin: 8px 0;
+      margin: 8px 0 8px;
       font-size: 21px;
       line-height: 1.18;
     }
@@ -807,6 +971,266 @@
       margin-top: auto;
     }
 
+    .product-actions { display: grid; gap: 8px; margin-top: auto; }
+    .product-actions .btn { margin-top: 0; }
+
+    .product-card {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover,
+    .product-card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(18, 24, 38, 0.12);
+      outline: none;
+    }
+
+    .product-modal {
+      width: min(1120px, calc(100% - 28px));
+      max-width: none;
+      max-height: min(900px, calc(100vh - 28px));
+      padding: 0;
+      border: 0;
+      border-radius: 14px;
+      color: var(--ink);
+      background: #fff;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
+    }
+
+    .product-modal::backdrop { background: rgba(10, 14, 23, 0.68); }
+    .product-modal-shell { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr); min-height: 620px; }
+    .product-modal-gallery { padding: 28px; background: #f6f3ee; }
+    .product-modal-main { display: grid; place-items: center; height: 430px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+    .product-modal-main img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+    .product-modal-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; }
+    .product-modal-thumb { flex: 0 0 76px; height: 76px; padding: 4px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: pointer; }
+    .product-modal-thumb.active { border: 2px solid var(--red); }
+    .product-modal-thumb img { width: 100%; height: 100%; object-fit: contain; }
+    .product-modal-gallery-meta { margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .product-modal-info { position: relative; overflow-y: auto; padding: 34px; }
+    .product-modal-close { position: absolute; top: 16px; right: 18px; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--ink); font-size: 22px; cursor: pointer; }
+    .product-modal-info h2 { max-width: 520px; margin: 12px 42px 12px 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.12; }
+    .product-modal-desc { color: var(--muted); font-size: 15px; }
+    .product-modal-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0; }
+    .product-modal-section { padding: 18px 0; border-top: 1px solid var(--line); }
+    .product-modal-section h3 { margin: 0 0 10px; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .product-modal-scene-figure { margin: 14px 0 0; }
+    .product-modal-scene-figure img { display: block; width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; }
+    .product-modal-scene-figure figcaption { margin-top: 7px; color: var(--muted); font-size: 12px; }
+    .product-data-heading { margin-top: 22px !important; }
+    .product-data-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-bottom: 0; }
+    .product-data-row { display: grid; grid-template-columns: minmax(92px, .8fr) minmax(0, 1.2fr); min-height: 42px; border-bottom: 1px solid var(--line); }
+    .product-data-row dt, .product-data-row dd { margin: 0; padding: 10px 12px; font-size: 13px; }
+    .product-data-row dt { background: #f7f7f6; color: #4d5562; }
+    .product-data-row dd { color: #222b38; font-weight: 600; }
+    @media (max-width: 620px) { .product-data-grid { grid-template-columns: 1fr; } }
+    .product-modal-specs { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; color: #303847; font-size: 14px; }
+    .product-modal-specs li::before { content: "+"; margin-right: 8px; color: var(--red); font-weight: 900; }
+    .product-modal-note { padding: 12px 14px; border-left: 3px solid var(--red); background: #fff7f3; color: #4d2d29; font-size: 13px; }
+    .product-modal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+
+    @media (max-width: 820px) {
+      .product-modal-shell { grid-template-columns: 1fr; }
+      .product-modal-gallery { padding: 18px; }
+      .product-modal-main { height: 330px; }
+      .product-modal-info { padding: 24px 20px 28px; }
+    }
+
+    .product-spotlight {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 24px;
+      align-items: stretch;
+      margin: 34px 0 0;
+      padding: 24px;
+      border: 1px solid rgba(139, 30, 30, 0.18);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #fff 0%, #fff7f3 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .spotlight-media {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .spotlight-media img {
+      width: 100%;
+      aspect-ratio: 1.12 / 1;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .spotlight-badge {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      z-index: 1;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(139, 30, 30, 0.94);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .spotlight-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .spotlight-proof {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .spotlight-proof b {
+      display: block;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .spotlight-proof span {
+      display: block;
+      margin-top: 5px;
+      color: #303847;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .spotlight-copy {
+      min-width: 0;
+    }
+
+    .spotlight-copy h3 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      line-height: 1.08;
+    }
+
+    .reference-note {
+      margin: 14px 0 16px;
+      padding: 13px 14px;
+      border-left: 4px solid var(--red);
+      border-radius: 10px;
+      background: rgba(139, 30, 30, 0.07);
+      color: #303847;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .spec-table {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .spec-row {
+      display: contents;
+    }
+
+    .spec-label,
+    .spec-value {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      line-height: 1.45;
+    }
+
+    .spec-row:last-child .spec-label,
+    .spec-row:last-child .spec-value {
+      border-bottom: 0;
+    }
+
+    .spec-label {
+      background: #f8fafc;
+      color: #303847;
+      font-weight: 900;
+    }
+
+    .spec-value {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .buyer-checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 16px 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .buyer-checklist li {
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #303847;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .buyer-checklist li::before {
+      content: "\2713";
+      margin-right: 7px;
+      color: var(--red);
+    }
+
+    .spotlight-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .faq-section {
+      background: #fff;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .faq-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8fafc;
+    }
+
+    .faq-card h3 {
+      margin: 0 0 8px;
+      color: #121826;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .faq-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
     .sku-gallery {
       margin-top: 34px;
       padding-top: 28px;
@@ -902,7 +1326,7 @@
 
     .image-band-media {
       min-height: 570px;
-      background: url("assets/cutting-room.jpg") center / cover no-repeat;
+      background: url("assets/factory-strength/sewing-line.jpg") center / cover no-repeat;
     }
 
     .honesty-note {
@@ -1170,16 +1594,25 @@
       .buyer-bar-grid,
       .process,
       .product-grid,
+      .product-spotlight,
+      .faq-grid,
       .rfq-pack-grid,
       .rfq-pack-cards,
       .rfq-pack-stats,
       .sku-strip,
       .feature-grid,
+      .factory-proof-panel,
+      .spotlight-proof-grid,
+      .buyer-checklist,
       .contact-grid,
       .split,
       .image-band-inner,
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .factory-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .contact-grid {
@@ -1265,24 +1698,13 @@
       }
 
       .nav-links {
-        display: grid !important;
+        display: flex !important;
         flex-basis: 100%;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-        width: 100%;
-        min-width: 0;
-        max-width: 100%;
-        padding: 0 0 12px;
-        font-size: 11px;
-      }
-
-      .nav-links a {
-        min-width: 0;
-        padding: 8px 6px;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        text-align: center;
-        overflow-wrap: anywhere;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 0 0 12px 48px;
+        font-size: 12px;
       }
 
       .menu-toggle {
@@ -1308,10 +1730,8 @@
         grid-template-columns: 1fr;
       }
 
-      html,
-      body {
-        max-width: 100%;
-        overflow-x: hidden;
+      .rfq-pack-lead {
+        padding: 22px;
       }
 
       .proof-item {
@@ -1332,47 +1752,97 @@
       .product-img {
         height: 210px;
       }
+
+      .factory-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .factory-visual-main img {
+        min-height: 380px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="product-detail.css" />
+  <link rel="stylesheet" href="b2b-authority.css" />
+  <style>
+    @media (max-width: 640px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      html[lang="zh-CN"] .hero h1,
+      .hero h1 {
+        max-width: 100%;
+        font-size: 32px;
+        line-height: 1.12;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      html[lang="zh-CN"] .hero h1 {
+        word-break: break-all;
+      }
+
+      .hero p {
+        font-size: 15px;
+        line-height: 1.65;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="trade-utility" aria-label="企业与联系方式状态">
+    <div class="container">
+      <div class="utility-proof">
+        <span>中国广东茂名高州</span>
+        <span>皮革劳保手套 OEM / ODM 工厂</span>
+      </div>
+      <div class="utility-contact">
+        <a href="https://wa.me/message/JF3NK3JK3BGUG1" target="_blank" rel="noopener">WhatsApp：可用</a>
+        <span class="utility-reserved">正式域名与企业邮箱：待验证后启用</span>
+      </div>
+    </div>
+  </div>
   <header class="site-header">
     <div class="container">
       <nav class="nav" id="nav">
-        <a class="brand" href="#top" aria-label="Fulide Leather Safety Glove Factory home">
-          <img src="福立得标志.jpg" alt="Fulide logo" />
+        <a class="brand" href="#top" aria-label="福立得皮革劳保手套厂首页">
+          <img src="assets/brand/福立得标志.jpg" alt="福立得标志" />
           <div class="brand-copy">
             <strong>福立得皮革劳保手套厂</strong>
             <span>源头工厂 · OEM / ODM</span>
           </div>
         </a>
         <div class="nav-links" aria-label="Primary navigation">
-          <a href="#capability">工厂实力</a>
+          <a href="#find-glove">按工况选型</a>
           <a href="#products">产品系列</a>
+          <a href="#quality">工厂与质量</a>
           <a href="#rfq-pack">询价准备</a>
           <a href="#oem">OEM/ODM</a>
-          <a href="index-en.html">English</a>
-          <a href="#contact">联系询价</a>
+          <a href="#documents">资料中心</a>
+          <a href="index-en.html">英文版</a>
         </div>
         <div class="nav-actions">
           <a class="btn secondary" href="https://wa.me/message/JF3NK3JK3BGUG1" target="_blank" rel="noopener">WhatsApp</a>
           <a class="btn" href="#contact">发送询盘</a>
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">☰</button>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="Fulide factory hero">
+    <section class="hero" aria-label="福立得工厂首页展示">
       <div class="container">
         <div class="hero-content">
           <div class="eyebrow">皮革手部防护 · 中国高州源头工厂</div>
           <h1>为你的市场制造<br/>OEM 皮革焊接与劳保手套。</h1>
           <p>福立得帮助进口商、PPE 分销商和贴牌品牌，把真实工况转化为可复购的手套规格：从皮料选择、样品确认，到生产、包装和返单记录。</p>
           <div class="hero-actions">
-            <a class="btn" href="#products">查看产品矩阵</a>
-            <a class="btn secondary" href="#rfq-pack">准备 RFQ 询盘</a>
+            <a class="btn" href="#find-glove">按工况选手套</a>
+            <a class="btn secondary" href="#contact">创建 RFQ 询盘</a>
           </div>
           <div class="hero-proof" aria-label="Factory highlights">
             <div class="proof-item">
@@ -1389,7 +1859,7 @@
             </div>
             <div class="proof-item">
               <strong>证据导向</strong>
-              <span>展示真实产品、皮料、车缝和包装能力</span>
+              <span>展示真实车间、皮料、车缝、包装与装货记录</span>
             </div>
           </div>
           <div class="hero-rfq-panel" aria-label="询价前需要准备的信息">
@@ -1406,6 +1876,92 @@
               <li>交期窗口</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-sku-rail" aria-label="全部 SKU 快速浏览">
+      <div class="container">
+        <div class="hero-sku-head">
+          <div>
+            <span>全部产品 · 横向浏览</span>
+            <h2>先看到产品，再深入了解工厂。</h2>
+          </div>
+          <div class="hero-sku-controls" aria-label="产品滑动控制">
+            <button type="button" data-sku-scroll="-1" aria-label="向左浏览">←</button>
+            <button type="button" data-sku-scroll="1" aria-label="向右浏览">→</button>
+          </div>
+        </div>
+        <div class="hero-sku-track" id="heroSkuTrack" aria-label="福立得全部产品"></div>
+        <div class="hero-sku-foot">
+          <span>滑动查看全部 SKU · 点击产品直接查看详情</span>
+          <a href="#products">进入完整产品矩阵 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="factory-video" id="factory-video" aria-label="工厂视频">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">真实工厂现场</div>
+            <h2>从生产现场了解福立得</h2>
+          </div>
+          <p>视频文件已随网站部署，移动网站文件位置后仍可直接播放。</p>
+        </div>
+        <video controls preload="metadata" playsinline src="videos/fulide-fast125-v3.mp4">
+          您的浏览器不支持视频播放。
+        </video>
+      </div>
+    </section>
+
+    <section class="find-glove" id="find-glove" aria-label="按工况选择手套">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">按应用场景发现产品</p>
+            <h2>先确定工作，再确认手套结构。</h2>
+            <p class="lead">选择最接近的工况，网站会筛选对应产品系列，并把关键规格问题加入 RFQ 备注。</p>
+          </div>
+          <a class="btn secondary" href="#products">浏览全部 SKU</a>
+        </div>
+        <div class="finder-grid">
+          <article class="finder-card">
+            <span class="finder-index">01 / 精密焊接</span>
+            <h3>TIG 焊接</h3>
+            <p>重点确认灵活性、头层皮手感、接缝位置、袖口长度和精细操作需求。</p>
+            <button type="button" data-guide-category="电焊系列" data-guide-note="应用：TIG 焊接。请确认皮料等级、灵活性、袖口长度、车线、内里和尺码段。">查看 TIG 方向</button>
+          </article>
+          <article class="finder-card">
+            <span class="finder-index">02 / 热防护与耐用</span>
+            <h3>MIG 焊接</h3>
+            <p>平衡热覆盖、补强、内里、耐磨和长时间穿戴舒适度。</p>
+            <button type="button" data-guide-category="电焊系列" data-guide-note="应用：MIG 焊接。请确认皮料、内里、补强、热覆盖、袖口和作业强度。">查看 MIG 方向</button>
+          </article>
+          <article class="finder-card">
+            <span class="finder-index">03 / 重型热作业</span>
+            <h3>手工电弧焊</h3>
+            <p>重点关注二层皮、隔热、火花防护、易磨部位补强和长袖口覆盖。</p>
+            <button type="button" data-guide-category="电焊系列" data-guide-note="应用：手工电弧焊。请确认二层皮等级、隔热、补强、长袖口长度和热暴露情况。">查看重型焊接方向</button>
+          </article>
+          <article class="finder-card">
+            <span class="finder-index">04 / 抓握与灵活</span>
+            <h3>司机与物流</h3>
+            <p>确认皮料手感、拇指结构、抓握、易磨区域、尺码段和返单一致性。</p>
+            <button type="button" data-guide-category="司机手套" data-guide-note="应用：驾驶、物流或物料搬运。请确认皮料、拇指结构、抓握、易磨部位和尺码。">查看司机手套</button>
+          </article>
+          <article class="finder-card">
+            <span class="finder-index">05 / 实用价格带</span>
+            <h3>通用搬运</h3>
+            <p>围绕掌面材料、布背、袖口、补强和目标价格带规划批发产品线。</p>
+            <button type="button" data-guide-category="半皮系列" data-guide-note="应用：建筑或通用物料搬运。请确认掌面皮料、布背、袖口、补强和目标价格带。">查看搬运手套</button>
+          </article>
+          <article class="finder-card">
+            <span class="finder-index">06 / 特殊用途</span>
+            <h3>长袖口防护</h3>
+            <p>适合需要加长前臂覆盖和定制材料的动物护理或特殊搬运项目。</p>
+            <button type="button" data-guide-category="宠物防护" data-guide-note="应用：特殊或动物防护。请确认袖口长度、抓咬风险、材料、内里和清洁要求。">查看特殊防护手套</button>
+          </article>
         </div>
       </div>
     </section>
@@ -1487,24 +2043,55 @@
       </div>
     </section>
 
+    <section class="use-scenes" id="use-scenes" aria-label="使用场景">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">使用场景</p>
+            <h2>先说工作场景，再选手套规格。</h2>
+            <p class="lead">专业买家通常先判断工况、风险、灵活性与覆盖范围。福立得用真实工厂和产品照片，把应用需求连接到可确认的手套规格。</p>
+          </div>
+          <a class="btn secondary" href="#contact">按场景询价</a>
+        </div>
+        <div class="scene-grid">
+          <article class="scene-card">
+            <img src="assets/products/welding-blue-action.jpg" alt="焊接作业中使用蓝色皮革手套" loading="lazy" />
+            <div class="scene-card-copy"><strong>焊接与金属作业</strong><p>重点确认手套长度、袖口覆盖、皮料厚度、内里和活动灵活度。</p></div>
+          </article>
+          <article class="scene-card">
+            <img src="assets/factory-strength/glove-trimming.jpg" alt="工厂现场整理皮革手套细节" loading="lazy" />
+            <div class="scene-card-copy"><strong>生产与装配</strong><p>适合围绕耐磨、抓握、针车细节、尺码和批量返单沟通。</p></div>
+          </article>
+          <article class="scene-card">
+            <img src="assets/factory-strength/forklift-loading.jpg" alt="工厂装卸区批量货物装运" loading="lazy" />
+            <div class="scene-card-copy"><strong>仓储与装卸</strong><p>重点讨论耐磨、握持、袖口长度、颜色区分和包装方式。</p></div>
+          </article>
+          <article class="scene-card">
+            <img src="assets/products/semi-leather-branded-yellow.jpg" alt="带品牌标识的黄色半皮手套" loading="lazy" />
+            <div class="scene-card-copy"><strong>品牌与户外使用</strong><p>可按 BBQ、户外搬运等具体场景确认材料、外观、Logo 和包装。</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="capability" id="capability">
       <div class="container split">
         <div>
           <p class="section-kicker">工厂能力</p>
-          <h2>围绕皮料供应、裁片、车缝和灵活批量生产建立的源头工厂能力。</h2>
-          <p class="lead">当客户需要多种皮料等级、版型调整、快速打样和稳定返单沟通时，福立得的源头工厂优势更明显。</p>
+          <h2>从皮料备货、裁片车缝到成品包装，真实呈现源头工厂实力。</h2>
+          <p class="lead">福立得用真实生产照片展示工厂能力：仓储备料、皮料检查、车缝生产、修剪整理、品牌包装和装卸发货都能围绕 OEM/ODM 订单协同推进。</p>
           <div class="feature-grid">
             <div class="feature">
-              <strong>全品类皮料经验</strong>
-              <p>可根据使用场景和价格段选择牛二层、头层牛皮、羊皮、猪皮、绒面皮及复合材料。</p>
+              <strong>皮料与库存组织</strong>
+              <p>围绕不同订单场景整理皮料、裁片和半成品，便于批量生产与返单沟通。</p>
             </div>
             <div class="feature">
-              <strong>源头工厂供应链</strong>
-              <p>从备料、裁剪到车缝协同，帮助 OEM/ODM 需求更容易落地。</p>
+              <strong>车缝与细节加工</strong>
+              <p>车缝、修剪、补强、袖口和成品细节可结合样品要求逐项确认。</p>
             </div>
             <div class="feature">
-              <strong>面向买家的定制能力</strong>
-              <p>Logo、袖口、内里、颜色、补强、尺码段、包装和外箱唛头可按订单沟通。</p>
+              <strong>品牌包装配合</strong>
+              <p>可按订单沟通 Logo、标签、袋装、外箱唛头和市场语言等买家可见细节。</p>
             </div>
             <div class="feature">
               <strong>真实透明的定位</strong>
@@ -1513,10 +2100,123 @@
           </div>
           <div class="honesty-note">买家提示：福立得当前不在本网站展示第三方认证。本网站重点呈现工厂能力、产品范围和 OEM/ODM 生产配合。</div>
         </div>
-        <figure class="media-card">
-          <img src="assets/cutting-room.jpg" alt="Leather glove cutting and material preparation area at Fulide" />
-          <figcaption>生产区域中的皮料、手套裁片和裁剪工序。</figcaption>
-        </figure>
+        <div class="factory-visual" aria-label="福立得工厂实力照片">
+          <figure class="factory-visual-main">
+            <img src="assets/factory-strength/workshop-overview.jpg" alt="福立得工厂车间、皮料和生产批次" />
+            <figcaption>真实生产区域：皮料、半成品、车缝和批量订单协同推进。</figcaption>
+          </figure>
+          <div class="factory-proof-panel">
+            <div class="factory-proof">
+              <b>材料</b>
+              <span>皮料、裁片和半成品按订单需求整理</span>
+            </div>
+            <div class="factory-proof">
+              <b>车缝</b>
+              <span>车缝、修剪、补强等工序在厂内配合</span>
+            </div>
+            <div class="factory-proof">
+              <b>包装</b>
+              <span>支持品牌袋装、标签和外箱细节沟通</span>
+            </div>
+            <div class="factory-proof">
+              <b>装卸</b>
+              <span>批量成品装卸与发货配合有真实记录</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="factory-gallery" aria-label="工厂实力图片">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">工厂实拍</p>
+            <h2>让买家看见真实生产流程和批量配合能力。</h2>
+            <p class="lead">以下图片来自福立得工厂现场，覆盖备货、品牌包装、装卸、皮料检查、车缝、修剪和成品整理等环节。</p>
+          </div>
+          <a class="btn secondary" href="#contact">发送工厂询盘</a>
+        </div>
+        <div class="factory-gallery-grid">
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/factory-stock-01.jpg" alt="皮革手套工厂备货和材料批次" loading="lazy" />
+            <span>仓储备货与批量订单整理</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/branded-packaging.jpg" alt="福立得品牌手套包装袋" loading="lazy" />
+            <span>福立得品牌包装实拍</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/forklift-loading.jpg" alt="福立得工厂叉车装卸包装手套货物" loading="lazy" />
+            <span>批量货物装卸配合</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/warehouse-batches.jpg" alt="成品和半成品手套仓储批次" loading="lazy" />
+            <span>不同颜色与批次集中管理</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/material-thickness.jpg" alt="手套生产皮料厚度检查" loading="lazy" />
+            <span>皮料厚度与手感检查</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/sewing-detail.jpg" alt="皮革手套生产车缝细节" loading="lazy" />
+            <span>手套车缝细节</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/sewing-line.jpg" alt="车间皮革手套车缝生产线" loading="lazy" />
+            <span>车缝生产线现场</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/glove-trimming.jpg" alt="生产中修剪皮革手套裁片" loading="lazy" />
+            <span>边角修剪与整理</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/glove-finishing.jpg" alt="蓝色和黄色皮革手套整理工序" loading="lazy" />
+            <span>成品细节确认</span>
+          </figure>
+          <figure class="factory-gallery-tile">
+            <img src="assets/factory-strength/workshop-overview.jpg" alt="手套材料和生产批次车间全景" loading="lazy" />
+            <span>生产区域整体实拍</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="quality-system" id="quality" aria-label="工厂质量流程">
+      <div class="container quality-grid">
+        <div class="quality-manifesto">
+          <p class="section-kicker">工厂与质量档案</p>
+          <h2>让每一次返单都更容易复现。</h2>
+          <p>对 B2B 买家而言，质量不是一句口号，而是把确认样与材料、结构、做工、包装及下一批生产连接起来的记录。</p>
+          <div class="quality-status">当前网站状态：已发布真实流程照片；数值公差、检验计划和第三方文件待福立得上传已核准记录后补充。</div>
+        </div>
+        <div class="quality-steps">
+          <article class="quality-step">
+            <b>01</b>
+            <div><h3>需求转化</h3><p>把工况、目标市场、参考图和数量转化为可核对的规格清单。</p></div>
+            <span class="evidence-state">流程可见</span>
+          </article>
+          <article class="quality-step">
+            <b>02</b>
+            <div><h3>材料与结构评审</h3><p>确认皮料、手感、厚度目标、内里、袖口、拇指结构、补强和车线。</p></div>
+            <span class="evidence-state">照片证据</span>
+          </article>
+          <article class="quality-step">
+            <b>03</b>
+            <div><h3>确认样记录</h3><p>生产规划前记录合手度、尺寸、颜色、Logo 位置、包装稿和做工备注。</p></div>
+            <span class="evidence-state">模板待上传</span>
+          </article>
+          <article class="quality-step">
+            <b>04</b>
+            <div><h3>过程检查</h3><p>依照确认样核对裁剪、车缝、补强、修边、尺码标识和批次一致性。</p></div>
+            <span class="evidence-state">清单待上传</span>
+          </article>
+          <article class="quality-step">
+            <b>05</b>
+            <div><h3>包装与返单控制</h3><p>锁定袋装、标签、外箱唛头和 SKU 备注，让下一单从已确认记录开始。</p></div>
+            <span class="evidence-state">流程可见</span>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1531,32 +2231,81 @@
           <a class="btn secondary" href="#contact">前往询价表单</a>
         </div>
 
-        <div class="category-tabs" id="categoryTabs" aria-label="Product category filters"></div>
+        <div class="category-tabs" id="categoryTabs" aria-label="产品类别筛选"></div>
         <div class="product-grid" id="productGrid"></div>
-
-        <div class="sku-gallery" aria-label="Representative SKU range">
+        <div class="product-spotlight" id="tig-welding-reference" aria-label="12 英寸 TIG 焊接手套参考卡片">
+          <div class="spotlight-media">
+            <span class="spotlight-badge">12英寸 TIG 焊接 / 参考款</span>
+            <img src="assets/all-sku/welding-series-1-png.jpg" alt="12 英寸长袖口皮革 TIG 焊接手套参考图" loading="lazy" />
+            <div class="spotlight-proof-grid" aria-label="技术产品参考要点">
+              <div class="spotlight-proof">
+                <b>标题</b>
+                <span>标题直接包含长度、用途和材质关键词，便于买家判断。</span>
+              </div>
+              <div class="spotlight-proof">
+                <b>规格</b>
+                <span>用表格快速展示材质、袖口、尺码、包装和定制项。</span>
+              </div>
+              <div class="spotlight-proof">
+                <b>条款</b>
+                <span>MOQ、包装、样品和报价说明放在行动按钮附近。</span>
+              </div>
+              <div class="spotlight-proof">
+                <b>行动</b>
+                <span>让买家一键带着参考规格进入询盘，而不是自己找联系方式。</span>
+              </div>
+            </div>
+          </div>
+          <div class="spotlight-copy">
+            <p class="section-kicker">技术买家参考</p>
+            <h3>12 英寸 TIG 焊接手套询盘卡片。</h3>
+            <p class="lead">有效的 B2B 产品档案会把决策信息集中在一个模块：清晰图片、准确品名、规格表、商务条款、定制选项和直接询盘入口。</p>
+              <div class="reference-note">这是<strong>报价参考，而非最终规格</strong>。下单前必须依据确认样或正式文件，核对材料、结构、包装、数量、目标市场和合规要求。</div>
+            <div class="spec-table" aria-label="TIG welding glove reference specifications">
+              <div class="spec-row"><div class="spec-label">产品方向</div><div class="spec-value">成人通用 TIG 焊接手套，12 英寸加长袖口款。</div></div>
+              <div class="spec-row"><div class="spec-label">材质选项</div><div class="spec-value">可按样品沟通羊皮 / 头层皮手感，袖口可做牛二层或牛皮等方案。</div></div>
+              <div class="spec-row"><div class="spec-label">结构细节</div><div class="spec-value">参考 Keystone thumb、加长袖口、防护包边、车线和补强可按用途确认。</div></div>
+              <div class="spec-row"><div class="spec-label">尺码</div><div class="spec-value">M / L / XL 或按买家市场尺码段确认。</div></div>
+              <div class="spec-row"><div class="spec-label">包装</div><div class="spec-value">常见 B2B 可按 1 双/袋沟通，标签、外箱唛头和贴牌包装按订单确认。</div></div>
+              <div class="spec-row"><div class="spec-label">MOQ / 报价</div><div class="spec-value">需结合皮料等级、数量、Logo、包装、样品要求和交期计划确认。</div></div>
+            </div>
+            <ul class="buyer-checklist" aria-label="Buyer quote checklist">
+              <li>使用场景</li>
+              <li>皮料等级</li>
+              <li>长度 / 袖口</li>
+              <li>尺码段</li>
+              <li>Logo / 标签</li>
+              <li>预计数量</li>
+            </ul>
+            <div class="spotlight-actions">
+              <button class="btn" type="button" data-reference-product="tig-12" data-reference-category="电焊手套">按这个参考款询价</button>
+              <a class="btn secondary" href="#contact">发送报价需求</a>
+            </div>
+          </div>
+        </div>
+        <div class="sku-gallery" aria-label="代表性 SKU 产品范围">
           <div class="sku-gallery-head">
             <div>
-              <h3>精选 SKU 展示</h3>
-              <p>来自 11/all sku 文件夹的精选 SKU 图片，已优化为网页加载版本。</p>
+              <h3>代表性工厂产品范围</h3>
+              <p>从常见结构开始沟通材质、尺码、品牌、包装和目标价格，再按样品确认最终规格。</p>
             </div>
             <a class="btn secondary" href="#contact">咨询样品或价格</a>
           </div>
           <div class="sku-strip">
             <div class="sku-tile">
-              <img src="assets/products/welding-blue-action.jpg" alt="Blue welding glove in use" loading="lazy" />
+              <img src="assets/products/welding-blue-action.jpg" alt="使用中的蓝色焊接手套" loading="lazy" />
               <span>电焊手套应用图</span>
             </div>
             <div class="sku-tile">
-              <img src="assets/products/welding-long-cuff-orange.jpg" alt="Orange long cuff welding glove" loading="lazy" />
+              <img src="assets/products/welding-long-cuff-orange.jpg" alt="橙色长袖口焊接手套" loading="lazy" />
               <span>加长袖电焊手套</span>
             </div>
             <div class="sku-tile">
-              <img src="assets/products/semi-leather-branded-yellow.jpg" alt="Yellow semi-leather glove with Fulide logo" loading="lazy" />
+              <img src="assets/products/semi-leather-branded-yellow.jpg" alt="带福立得标识的黄色半皮手套" loading="lazy" />
               <span>带品牌半皮手套</span>
             </div>
             <div class="sku-tile">
-              <img src="assets/products/driver-black-leather.jpg" alt="Black leather driver glove" loading="lazy" />
+              <img src="assets/products/driver-black-leather.jpg" alt="黑色皮革司机手套" loading="lazy" />
               <span>司机手套选项</span>
             </div>
           </div>
@@ -1566,7 +2315,7 @@
 
     <section class="image-band" id="oem">
       <div class="image-band-inner">
-        <div class="image-band-media" role="img" aria-label="Leather glove factory production area"></div>
+        <div class="image-band-media" role="img" aria-label="皮革手套工厂生产区域"></div>
         <div class="image-band-copy">
           <p class="section-kicker">OEM / ODM 流程</p>
           <h2>从样品沟通到批量返单。</h2>
@@ -1613,6 +2362,78 @@
         </div>
       </div>
     </section>
+    <section class="documents-hub" id="documents" aria-label="买家资料中心">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">资料中心</p>
+            <h2>围绕具体产品和订单建立证据包。</h2>
+            <p class="lead">这里专门为已核准文件预留。它告诉买家可以索取什么，同时不会暗示尚未验证的证书或报告已经存在。</p>
+          </div>
+          <a class="btn secondary" href="#contact">申请所需文件</a>
+        </div>
+        <div class="document-grid">
+          <article class="document-card">
+            <span class="doc-type">产品文件 · 预留</span>
+            <h3>产品数据表</h3>
+            <p>规格确认后补充 SKU 对应的材料、结构、尺寸、尺码段、包装和版本信息。</p>
+            <span class="reserved-button" aria-disabled="true">后续上传已核准 PDF</span>
+          </article>
+          <article class="document-card">
+            <span class="doc-type">合规文件 · 预留</span>
+            <h3>测试报告与声明</h3>
+            <p>仅发布与具体手套、受测结构、标准、签发机构和有效期相匹配的正式文件。</p>
+            <span class="reserved-button" aria-disabled="true">当前未发布认证声明</span>
+          </article>
+          <article class="document-card">
+            <span class="doc-type">供应商文件 · 预留</span>
+            <h3>工厂与公司资料包</h3>
+            <p>企业简介、生产流程、联系身份和买家要求的工厂记录，可在审核后补充。</p>
+            <span class="reserved-button" aria-disabled="true">验证资料待补充</span>
+          </article>
+        </div>
+        <div class="placeholder-policy"><strong>证据规则：</strong>福立得不会把文件徽章当作装饰。每个未来下载文件都应标明适用 SKU 或工厂记录、文件主体、签发日期与范围。打样前请告诉我们目标市场要求的证据。</div>
+      </div>
+    </section>
+
+    <section class="faq-section" aria-label="Buyer FAQ">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">买家常见问题</p>
+            <h2>在正式询盘前，先把买家最常问的问题说明白。</h2>
+            <p class="lead">这些回答先减少规格、MOQ、包装和样品方面最常见的不确定性，再让买家提交正式需求。</p>
+          </div>
+          <a class="btn secondary" href="#tig-welding-reference">查看 TIG 参考卡片</a>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card">
+            <h3>可以根据参考链接或图片报价吗？</h3>
+            <p>可以。请发送参考图片或产品链接、使用场景、目标市场、数量和包装需求，福立得会把它拆成材质、结构和样品确认点。</p>
+          </article>
+          <article class="faq-card">
+            <h3>电焊手套报价需要哪些信息？</h3>
+            <p>长度、皮料、内里、袖口、车线、拇指结构、补强、尺码段、Logo、包装、外箱唛头和预计订单数量。</p>
+          </article>
+          <article class="faq-card">
+            <h3>能做贴牌包装吗？</h3>
+            <p>Logo、标签、袋装、外箱唛头、颜色和目标市场语言都可以在样品和设计稿确认后进一步沟通。</p>
+          </article>
+          <article class="faq-card">
+            <h3>MOQ 是固定的吗？</h3>
+            <p>MOQ 会受皮料、颜色、包装、Logo 和生产排期影响。建议在询盘表里写清楚每个 SKU 的预计数量，便于给出可执行方案。</p>
+          </article>
+          <article class="faq-card">
+            <h3>样品可以调整吗？</h3>
+            <p>可以。批量生产前可围绕尺码、手感、袖口、车缝、Logo 和包装细节做确认和调整。</p>
+          </article>
+          <article class="faq-card">
+            <h3>网站展示认证声明吗？</h3>
+            <p>本网站不展示未能支持的认证声明。如果买家有测试或合规文件要求，可按订单和目标市场单独沟通。</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="contact" id="contact">
       <div class="container">
@@ -1628,20 +2449,42 @@
             <div class="selected-list" id="selectedList"></div>
             <div class="form-grid">
               <div class="field">
-                <label for="name">姓名 / 公司</label>
-                <input id="name" name="name" autocomplete="organization" placeholder="您的姓名或公司名称" />
+                <label for="company">公司名称 *</label>
+                <input id="company" name="company" autocomplete="organization" placeholder="公司法定名称或贸易名称" required />
               </div>
               <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="用于接收报价回复" />
+                <label for="name">联系人 *</label>
+                <input id="name" name="name" autocomplete="name" placeholder="您的姓名" required />
               </div>
               <div class="field">
-                <label for="market">目标市场</label>
-                <input id="market" name="market" placeholder="美国、欧洲、中东等" />
+                <label for="email">商务邮箱 *</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="用于接收报价回复" required />
               </div>
               <div class="field">
-                <label for="quantity">预计数量</label>
-                <input id="quantity" name="quantity" placeholder="例如：每个 SKU 5,000 双" />
+                <label for="whatsapp">WhatsApp / 电话</label>
+                <input id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="请包含国家或地区代码" />
+              </div>
+              <div class="field">
+                <label for="market">目标市场 *</label>
+                <input id="market" name="market" placeholder="美国、欧洲、中东等" required />
+              </div>
+              <div class="field">
+                <label for="quantity">预计数量 *</label>
+                <input id="quantity" name="quantity" placeholder="例如：每个 SKU 5,000 双" required />
+              </div>
+              <div class="field">
+                <label for="buyerType">买家类型</label>
+                <select id="buyerType" name="buyerType">
+                  <option>进口商 / 分销商</option>
+                  <option>批发采购商</option>
+                  <option>品牌 / 贴牌客户</option>
+                  <option>工业终端用户</option>
+                  <option>零售 / 电商</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="targetPrice">目标价格段</label>
+                <input id="targetPrice" name="targetPrice" placeholder="可选：美元 / 双或价格区间" />
               </div>
               <div class="field">
                 <label for="orderType">订单类型</label>
@@ -1662,6 +2505,14 @@
                   <option>OEM/ODM 定制需求</option>
                 </select>
               </div>
+              <div class="field">
+                <label for="documentation">文件 / 认证要求</label>
+                <input id="documentation" name="documentation" placeholder="可选：EN 388、测试报告、REACH 等" />
+              </div>
+              <div class="field">
+                <label for="deadline">采购时间</label>
+                <input id="deadline" name="deadline" placeholder="打样日期或期望交货窗口" />
+              </div>
               <div class="field full">
                 <label for="message">规格需求</label>
                 <textarea id="message" name="message" placeholder="皮料、厚度、内里、袖口、Logo、包装、颜色、尺码段、目标价格、参考图片链接等..."></textarea>
@@ -1669,9 +2520,10 @@
             </div>
             <div class="form-actions">
               <button class="btn full" type="submit">复制邮箱 / WhatsApp 询盘</button>
+              <button class="btn secondary full" type="button" id="openEmailInquiry">打开邮箱草稿</button>
               <a class="btn green" href="https://wa.me/message/JF3NK3JK3BGUG1" target="_blank" rel="noopener">打开 WhatsApp</a>
             </div>
-            <p class="form-note">本静态网站会整理一段询盘文字，不假装提交到隐藏后台。复制后请粘贴到 WhatsApp、微信或邮箱发送。</p>
+            <p class="form-note">本静态网站会整理一段询盘文字，不假装提交到隐藏后台。可复制内容，或打开预填邮箱草稿发送至 <a href="mailto:delivervalue95@gmail.com">delivervalue95@gmail.com</a>；发送前请先检查。</p>
           </form>
 
           <aside class="contact-card">
@@ -1680,16 +2532,23 @@
             <p class="lead" style="font-size: 15px;">为了更快沟通，请发送产品图片、数量、目标市场、包装要求和目标价格段。</p>
             <div style="display: grid; gap: 10px; margin-top: 20px;">
               <a class="btn green full" href="https://wa.me/message/JF3NK3JK3BGUG1" target="_blank" rel="noopener">打开 WhatsApp</a>
+              <a class="btn secondary full" href="mailto:delivervalue95@gmail.com?subject=Fulide%20OEM%2FODM%20%E6%89%8B%E5%A5%97%E8%AF%A2%E7%9B%98">邮箱：delivervalue95@gmail.com</a>
               <button class="btn secondary full" type="button" id="copyWechat">复制微信号：worktogether8</button>
+            </div>
+            <div class="domain-placeholder" aria-label="正式联系方式预留位">
+              <b>正式数字身份 · 预留</b>
+              <code>www.[official-domain].com</code>
+              <code>sales@[official-domain].com</code>
+              <span>正式域名和域名企业邮箱完成验证后，将替换临时 Gmail 路径。现阶段 WhatsApp、微信和当前邮箱仍可正常联系。</span>
             </div>
             <div class="qr-grid">
               <div class="qr">
-                <img src="whatsapp.jpg" alt="WhatsApp QR code" />
+                <img src="assets/brand/whatsapp.jpg" alt="WhatsApp QR code" />
                 <strong>WhatsApp</strong>
                 <span>国际业务咨询</span>
               </div>
               <div class="qr">
-                <img src="wechat.jpg" alt="WeChat QR code" />
+                <img src="assets/brand/wechat.jpg" alt="WeChat QR code" />
                 <strong>WeChat</strong>
                 <span>worktogether8</span>
               </div>
@@ -1702,18 +2561,51 @@
 
   <button class="btn floating-inquiry" id="floatingInquiry" type="button">询价清单： <span id="floatingCount">0</span></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog class="product-modal" id="productModal" aria-labelledby="productModalTitle">
+    <div class="product-modal-shell">
+      <div class="product-modal-gallery">
+        <div class="product-modal-main"><img id="productModalImage" src="" alt="" /></div>
+        <div class="product-modal-thumbs" id="productModalThumbs"></div>
+        <div class="product-modal-gallery-meta" id="productModalGalleryMeta">封面图 · 使用场景 · 定制配色 · 同款多视角</div>
+      </div>
+      <div class="product-modal-info">
+        <button class="product-modal-close" id="productModalClose" type="button" aria-label="关闭">×</button>
+        <span class="pill" id="productModalCategory"></span>
+        <h2 id="productModalTitle"></h2>
+        <p class="product-modal-desc" id="productModalDesc"></p>
+        <div class="product-modal-tags" id="productModalTags"></div>
+        <div class="product-modal-section"><h3>使用场景</h3><p id="productModalScenes"></p><figure class="product-modal-scene-figure" id="productModalSceneFigure"><img id="productModalSceneImage" src="" alt="" /><figcaption>对应 SKU 使用场景参考图</figcaption></figure></div>
+        <div class="product-modal-section"><h3 class="product-data-heading">关键属性</h3><dl class="product-data-grid" id="productModalAttributes"></dl></div>
+        <div class="product-modal-section"><h3 class="product-data-heading">包装与交付</h3><dl class="product-data-grid" id="productModalPackaging"></dl></div>
+        <div class="product-modal-section"><h3 class="product-data-heading">供货能力</h3><dl class="product-data-grid" id="productModalSupply"></dl></div>
+        <div class="product-modal-section"><h3>规格与定制</h3><ul class="product-modal-specs" id="productModalSpecs"></ul></div>
+        <div class="product-modal-note">样品、MOQ、材质、尺码、袖口、Logo、包装和交期需要根据目标市场与订单数量确认。</div>
+        <div class="product-modal-actions">
+          <button class="btn" id="productModalInquiry" type="button">加入询价清单</button>
+          <a class="btn secondary" href="#contact" id="productModalContact">按此 SKU 询价</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <footer>
     <div class="container footer-grid">
       <div>
         <strong>福立得皮革劳保手套厂</strong>
         <div>中国茂名高州 · OEM/ODM leather safety gloves · 不展示未证实的认证声明。</div>
+        <div class="footer-authority">
+          <span>工厂流程：已展示</span>
+          <span class="pending">证书、正式域名与企业邮箱：已预留</span>
+        </div>
       </div>
       <div class="footer-links">
+        <a href="#find-glove">按工况选型</a>
         <a href="#capability">工厂实力</a>
+        <a href="#quality">质量流程</a>
         <a href="#products">产品系列</a>
         <a href="#oem">OEM/ODM</a>
-          <a href="index-en.html">English</a>
+        <a href="#documents">资料中心</a>
+        <a href="index-en.html">英文版</a>
         <a href="#contact">联系询价</a>
       </div>
     </div>
@@ -2476,6 +3368,90 @@
     const floatingInquiry = document.getElementById("floatingInquiry");
     const floatingCount = document.getElementById("floatingCount");
     const toast = document.getElementById("toast");
+    const productModal = document.getElementById("productModal");
+    const productModalImage = document.getElementById("productModalImage");
+    const productModalThumbs = document.getElementById("productModalThumbs");
+    const productModalGalleryMeta = document.getElementById("productModalGalleryMeta");
+    const productModalCategory = document.getElementById("productModalCategory");
+    const productModalTitle = document.getElementById("productModalTitle");
+    const productModalDesc = document.getElementById("productModalDesc");
+    const productModalTags = document.getElementById("productModalTags");
+    const productModalScenes = document.getElementById("productModalScenes");
+    const productModalSceneFigure = document.getElementById("productModalSceneFigure");
+    const productModalSceneImage = document.getElementById("productModalSceneImage");
+    const productModalAttributes = document.getElementById("productModalAttributes");
+    const productModalPackaging = document.getElementById("productModalPackaging");
+    const productModalSupply = document.getElementById("productModalSupply");
+    const productModalSpecs = document.getElementById("productModalSpecs");
+    const productModalInquiry = document.getElementById("productModalInquiry");
+    const isEnglish = document.documentElement.lang === "en";
+    let activeProduct = null;
+
+    function productScenarios(product) {
+      const key = `${product.id} ${product.category}`.toLowerCase();
+      if (key.includes("weld") || key.includes("焊")) return isEnglish ? "Welding, metalwork, repair shops and other heat-related work scenarios." : "焊接、金属加工、维修车间等与热作业相关的使用场景。";
+      if (key.includes("pet") || key.includes("宠物")) return isEnglish ? "Pet handling, grooming, training and situations requiring extra arm coverage." : "宠物处理、洗护、训练，以及需要额外手臂覆盖的场景。";
+      if (key.includes("driver") || key.includes("司机")) return isEnglish ? "Driving, warehouse handling, forklift work, logistics and daily work protection." : "驾驶、仓储搬运、叉车作业、物流和日常工作防护。";
+      return isEnglish ? "Construction, assembly, warehouse handling, packaging and general work protection." : "建筑、装配、仓储搬运、包装和通用劳保场景。";
+    }
+
+    function productCommercialData(product) {
+      const key = `${product.id} ${product.category}`.toLowerCase();
+      const stem = product.id.replace(/-(jpg|png)$/i, "");
+      const model = `FUL-${stem.toUpperCase()}`;
+      const welding = key.includes("weld") || key.includes("焊");
+      const pet = key.includes("pet") || key.includes("宠物");
+      const driver = key.includes("driver") || key.includes("司机");
+      const material = welding ? "皮革 / 二层皮（可定制）" : pet ? "皮革 / 涂层面料（可定制）" : "皮革或半皮（可定制）";
+      const length = pet ? "长袖口 / 可定制" : "标准袖口 / 可定制";
+      const usage = productScenarios(product);
+      return {
+        attributes: [["功能", welding ? "TIG / 焊接作业防护" : pet ? "宠物洗护与抓握" : driver ? "驾驶与仓储搬运" : "通用作业与物料搬运"], ["型号", model], ["产地", "中国广东茂名"], ["品牌", "定制 / OEM"], ["材质", material], ["长度", length], ["用途", usage], ["尺码", "M、L、XL / 可定制"], ["包装", "1 双 / 袋；外箱可定制"], ["MOQ", "样品单 / 批量 MOQ 按订单确认"]],
+        packaging: [["包装详情", "1 双/PE 袋；每箱数量按订单确认"], ["发货港", "华南港口，待确认"], ["销售单位", "双 / 单件"], ["单个包装尺寸", "按 SKU、尺码和包装确认"], ["单件毛重", "按 SKU 和尺码确认"]],
+        supply: [["供货能力", "按 SKU、定制内容和订单计划确认"]]
+      };
+    }
+
+    function renderProductData(target, rows) {
+      target.innerHTML = rows.map(([label, value]) => `<div class="product-data-row"><dt>${label}</dt><dd>${value}</dd></div>`).join("");
+    }
+
+    function productGallery(product) {
+      const skuStem = product.id.replace(/-(jpg|png)$/i, "");
+      const exactVariants = products
+        .filter((item) => item.id.replace(/-(jpg|png)$/i, "") === skuStem)
+        .map((item) => item.image);
+      const sceneImage = `assets/sku-scenes/${skuStem}.png`;
+      const colorVariant = `assets/sku-color-variants/${skuStem}.png`;
+      return [...new Set([product.image, sceneImage, colorVariant, ...exactVariants])].slice(0, 5);
+    }
+
+    function openProduct(product) {
+      activeProduct = product;
+      const gallery = productGallery(product);
+      productModalCategory.textContent = product.category;
+      productModalTitle.textContent = product.name;
+      productModalDesc.textContent = product.desc;
+      productModalScenes.textContent = productScenarios(product);
+      const skuStem = product.id.replace(/-(jpg|png)$/i, "");
+      productModalSceneFigure.hidden = false;
+      productModalSceneImage.onerror = () => { productModalSceneFigure.hidden = true; };
+      productModalSceneImage.src = `assets/sku-scenes/${skuStem}.png`;
+      productModalSceneImage.alt = `${product.name} 使用场景`;
+      const commercialData = productCommercialData(product);
+      renderProductData(productModalAttributes, commercialData.attributes);
+      renderProductData(productModalPackaging, commercialData.packaging);
+      renderProductData(productModalSupply, commercialData.supply);
+      productModalTags.innerHTML = product.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+      productModalSpecs.innerHTML = [...product.specs, isEnglish ? "Logo, color, size, cuff and packaging customization" : "支持 Logo、颜色、尺码、袖口和包装定制"].map((spec) => `<li>${spec}</li>`).join("");
+      productModalImage.src = gallery[0];
+      productModalImage.alt = product.name;
+      productModalThumbs.hidden = gallery.length < 2;
+      productModalGalleryMeta.textContent = `共 ${gallery.length} 张：封面图 · 使用场景 · 定制配色 · 同款多视角`;
+      productModalThumbs.innerHTML = gallery.map((image, index) => { const label = image.includes("sku-scenes") ? "使用场景" : image.includes("sku-color-variants") ? "定制配色" : `SKU 图片 ${index + 1}`; return `<button class="product-modal-thumb ${index === 0 ? "active" : ""}" type="button" title="${label}" aria-label="${label}" data-gallery-image="${image}"><img src="${image}" alt="${product.name} ${label}" /></button>`; }).join("");
+      productModalInquiry.textContent = selected.has(product.id) ? (isEnglish ? "Remove from inquiry" : "从询价清单移除") : (isEnglish ? "Add to inquiry" : "加入询价清单");
+      productModal.showModal();
+    }
 
     function renderTabs() {
       tabs.innerHTML = categories.map((category) => {
@@ -2492,7 +3468,7 @@
       grid.innerHTML = visible.map((product) => {
         const inList = selected.has(product.id);
         return `
-          <article class="product-card">
+          <article class="product-card" data-open-product="${product.id}">
             <div class="product-img ${product.position}">
               <img src="${product.image}" alt="${product.name}" loading="lazy" />
             </div>
@@ -2506,9 +3482,12 @@
               <ul class="spec-list">
                 ${product.specs.map((spec) => `<li>${spec}</li>`).join("")}
               </ul>
-              <button class="btn ${inList ? "secondary" : ""}" type="button" data-add="${product.id}">
-                ${inList ? "Added to Inquiry" : "Add to Inquiry"}
-              </button>
+              <div class="product-actions">
+                <button class="btn secondary product-detail-trigger" type="button" data-open-product="${product.id}">查看 SKU 详情</button>
+                <button class="btn ${inList ? "secondary" : ""}" type="button" data-add="${product.id}">
+                  ${inList ? "Added to Inquiry" : "Add to Inquiry"}
+                </button>
+              </div>
             </div>
           </article>
         `;
@@ -2528,13 +3507,6 @@
       toast.textContent = message;
       toast.classList.add("show");
       setTimeout(() => toast.classList.remove("show"), 2400);
-    }
-
-    function normalizeCategory(value) {
-      return String(value || "")
-        .toLowerCase()
-        .replace(/\s+/g, "")
-        .replace(/(?:gloves?|series|系列|手套)/g, "");
     }
 
     async function copyText(text) {
@@ -2558,6 +3530,22 @@
       document.body.removeChild(temp);
     }
 
+    function marketingAttribution() {
+      const params = new URLSearchParams(window.location.search);
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+      const values = keys
+        .map((key) => `${key}=${params.get(key) || ""}`)
+        .filter((value) => !value.endsWith("="));
+      if (document.referrer) {
+        try {
+          values.push(`referrer=${new URL(document.referrer).hostname}`);
+        } catch (error) {
+          // 忽略无效来源，询盘仍可正常生成。
+        }
+      }
+      return values.join("; ") || "direct / unknown";
+    }
+
     function buildInquiryMessage(form) {
       const selectedProducts = [...selected.values()].map((item) => `- ${item.name}`).join("\n") || "- 暂未选择产品";
       const data = new FormData(form);
@@ -2565,12 +3553,19 @@
       return [
         "福立得 OEM/ODM 询盘",
         "",
-        `姓名 / 公司: ${data.get("name") || ""}`,
+        `公司: ${data.get("company") || ""}`,
+        `联系人: ${data.get("name") || ""}`,
         `邮箱： ${data.get("email") || ""}`,
+        `WhatsApp / 电话: ${data.get("whatsapp") || ""}`,
         `目标市场: ${data.get("market") || ""}`,
+        `营销来源: ${marketingAttribution()}`,
         `预计数量: ${data.get("quantity") || ""}`,
+        `买家类型: ${data.get("buyerType") || ""}`,
+        `目标价格段: ${data.get("targetPrice") || ""}`,
         `订单类型: ${data.get("orderType") || ""}`,
         `主要品类: ${data.get("category") || ""}`,
+        `文件 / 认证要求: ${data.get("documentation") || ""}`,
+        `采购时间: ${data.get("deadline") || ""}`,
         "",
         "已选产品：",
         selectedProducts,
@@ -2579,7 +3574,37 @@
         data.get("message") || ""
       ].join("\n");
     }
+    const referenceInquiryText = [
+      "参考产品：12 英寸 TIG 焊接手套",
+      "使用场景：TIG 焊接 / 金属加工 / 维修车间",
+      "待确认材质：羊皮或头层皮手感，袖口可沟通牛二层 / 牛皮方案",
+      "待确认结构：Keystone thumb、加长袖口、包边 / 防护条、车线、是否加内里",
+      "尺码段：M / L / XL 或目标市场尺码组合",
+      "包装：单双袋装 / 标签 / 外箱唛头 / 贴牌包装要求",
+      "请根据数量、样品要求、包装和目标市场报价。"
+    ].join("\n");
 
+    document.querySelectorAll("[data-reference-product]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const messageField = document.getElementById("message");
+        const categoryField = document.getElementById("category");
+        if (categoryField && button.dataset.referenceCategory) {
+          categoryField.value = button.dataset.referenceCategory;
+        }
+        if (messageField) {
+          messageField.value = messageField.value
+            ? `${messageField.value}\n\n${referenceInquiryText}`
+            : referenceInquiryText;
+        }
+        selected.set("reference-tig-12", {
+          id: "reference-tig-12",
+          name: "参考：12 英寸 TIG 焊接手套询盘卡片"
+        });
+        renderSelected();
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        showToast("已把 TIG 焊接手套参考规格加入询盘备注。");
+      });
+    });
     tabs.addEventListener("click", (event) => {
       const button = event.target.closest("[data-category]");
       if (!button) return;
@@ -2588,35 +3613,13 @@
       renderProducts();
     });
 
-    document.querySelectorAll("[data-guide-category]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const requestedCategory = button.dataset.guideCategory || "";
-        const requestedKey = normalizeCategory(requestedCategory);
-        const categoryTab = [...document.querySelectorAll("#categoryTabs button")].find(
-          (tab) => normalizeCategory(tab.textContent) === requestedKey
-        );
-        if (categoryTab) categoryTab.click();
-
-        const categoryField = document.getElementById("category");
-        if (categoryField) {
-          const option = [...categoryField.options].find(
-            (item) => normalizeCategory(item.textContent) === requestedKey
-          );
-          if (option) categoryField.value = option.value;
-        }
-
-        const note = button.dataset.guideNote;
-        const message = document.getElementById("message");
-        if (message && note && !message.value.includes(note)) {
-          message.value = message.value ? `${message.value}\n${note}` : note;
-        }
-
-        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-        showToast("采购包已加入询盘备注。");
-      });
-    });
-
     grid.addEventListener("click", (event) => {
+      const card = event.target.closest("[data-open-product]");
+      if (card && !event.target.closest("[data-add]")) {
+        const product = products.find((item) => item.id === card.dataset.openProduct);
+        if (product) openProduct(product);
+        return;
+      }
       const button = event.target.closest("[data-add]");
       if (!button) return;
       const product = products.find((item) => item.id === button.dataset.add);
@@ -2634,11 +3637,47 @@
       renderSelected();
     });
 
+    grid.addEventListener("keydown", (event) => {
+      const card = event.target.closest("[data-open-product]");
+      if (!card || (event.key !== "Enter" && event.key !== " ")) return;
+      event.preventDefault();
+      const product = products.find((item) => item.id === card.dataset.openProduct);
+      if (product) openProduct(product);
+    });
+
+    productModalThumbs.addEventListener("click", (event) => {
+      const thumb = event.target.closest("[data-gallery-image]");
+      if (!thumb) return;
+      productModalImage.src = thumb.dataset.galleryImage;
+      productModalThumbs.querySelectorAll(".product-modal-thumb").forEach((item) => item.classList.toggle("active", item === thumb));
+    });
+
+    document.getElementById("productModalClose").addEventListener("click", () => productModal.close());
+    productModal.addEventListener("click", (event) => { if (event.target === productModal) productModal.close(); });
+    document.getElementById("productModalInquiry").addEventListener("click", () => {
+      if (!activeProduct) return;
+      if (selected.has(activeProduct.id)) { selected.delete(activeProduct.id); showToast(isEnglish ? "Removed from inquiry." : "已从询价清单移除。"); }
+      else { selected.set(activeProduct.id, activeProduct); showToast(isEnglish ? "Added to inquiry." : "已加入询价清单。"); }
+      renderProducts(); renderSelected(); openProduct(activeProduct);
+    });
+    document.getElementById("productModalContact").addEventListener("click", () => {
+      productModal.close();
+      const messageField = document.getElementById("message");
+      const line = isEnglish ? `SKU: ${activeProduct?.name || ""}` : `SKU：${activeProduct?.name || ""}`;
+      if (messageField && activeProduct && !messageField.value.includes(activeProduct.name)) messageField.value = `${line}\n${messageField.value}`;
+    });
+
     document.getElementById("inquiryForm").addEventListener("submit", async (event) => {
       event.preventDefault();
       const message = buildInquiryMessage(event.currentTarget);
       await copyText(message);
       showToast("询盘内容已复制，请粘贴到 WhatsApp、微信或邮箱发送。");
+    });
+
+    document.getElementById("openEmailInquiry").addEventListener("click", () => {
+      const message = buildInquiryMessage(document.getElementById("inquiryForm"));
+      const subject = "Fulide OEM/ODM 手套询盘";
+      window.location.href = `mailto:delivervalue95@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
     });
 
     document.getElementById("copyWechat").addEventListener("click", async () => {
@@ -2662,5 +3701,6 @@
     renderProducts();
     renderSelected();
   </script>
+  <script src="b2b-authority.js"></script>
 </body>
 </html>
